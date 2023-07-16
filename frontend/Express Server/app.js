@@ -20,19 +20,15 @@ const threadSchema = new mongoose.Schema({
 const Thread = mongoose.model("Thread", threadSchema);
 
 app.get("/", async (req,res)=>{
-    // if(!err){    
+
         console.log("Fetching all Threads");
         const thread = await Thread.find({});
         res.send(thread);
-    // }else{
-    //     console.log("Error gen");
-    //     console.log(err);
-    //     console.log("Error end");
-    // }
+
 })
 
 app.post("/new", async (req,res)=>{
-    // if(!err){    
+   
         const newThread = new Thread({
             title : req.body.title,
             content : req.body.content
@@ -40,9 +36,6 @@ app.post("/new", async (req,res)=>{
         await newThread.save();
         console.log("Saved Successfully ");
         res.send(newThread);
-    // }else{
-    //     console.log(err);
-    // }
 })
 
 
