@@ -1,10 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const port = process.env.PORT || 8080;
-
+const cors = require("cors");
 
 const app = express();
 app.use(express.urlencoded({extended:true}));
+app.use(cors({origin:'*'}));
 
 mongoose.connect("mongodb+srv://Master:Master@cluster0.9sttlnd.mongodb.net/?retryWrites=true&w=majority",{
     useNewUrlParser:true,
@@ -38,7 +39,9 @@ app.post("/new", async (req,res)=>{
         res.send(newThread);
 })
 
-
+app.get("/hello-World/:id/:part",(req,res) => {
+    res.send(`Hello World with id:${req.params.id} with part:${req.params.part}`);
+})
 
 
 app.listen(port,()=>{
