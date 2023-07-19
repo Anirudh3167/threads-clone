@@ -1,16 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+
+import HomeNavbar from './components/HomeNavbar';
+
+import About from '../src/pages/About';
+import Profile from './pages/profile';
+import Home from './pages/Home';
+import Thread from './pages/thread/Thread';
 
 
 function App() {
-  function getAPI() {
-    console.log("clicked");
-    let res = fetch("http://127.0.0.1:9000/api/about-app",{mode:"cors"})
-    .then((response) => {console.log(response);}); 
-  }
+  // Test API Call
+  // function getAPI() {
+  //   console.log("clicked");
+  //   fetch("http://127.0.0.1:8080/hello-World/12/234", { mode: "cors" })
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //       return response.text();
+  //     })
+  //     .then((data) => console.log(data))
+  //     .catch((error) => console.log(error));
+  // }
+  
   return (
     <div className="App">
-      <button onClick={getAPI}> API testing </button>
+      <HomeNavbar />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path='/profile' element={<Profile />} />
+
+          <Route path='/thread' element={<Thread />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

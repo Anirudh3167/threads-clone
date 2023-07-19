@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body {
+    height: 100%;
+    width: 100%;
+}
+
+.mainContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100vw;
+
+    background-color: rgb(15,15,15);
+    color: white;
+}
+
+.userDetailsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    
+    width: 100%;
+
+    border-bottom: 1px solid rgb(60,60,60);
+}
+
+.leftblock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 300px;
+    min-height: 200px;
+
+    padding: 10px;
+    font-size: 18px;
+}
+
+.imgContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+    font-size: 30px;
+    background-color: #222;
+}
+
+.followBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 120px;
+
+    padding: 5px;
+    margin: 15px;
+    margin-top: 25px;
+    font-size: 18px;
+    border: 2px solid rgb(49, 49, 201);
+    border-radius: 5px;
+    background-color: rgb(49, 49, 201);
+}
+
+.rightblock {
+    display: flex;
+    align-items:center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    min-width: 300px;
+    min-height: 250px;
+
+    margin: 20px;
+    padding: 10px;
+}
+
+.stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.statsContents {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    padding: 5px;
+    margin: 5px;
+}
+
+.statsHeading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statsCount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userBio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 10px;
+}
+.userThreadsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 800px;
+    width: 100vw;
+    min-width: 300px;
+    height: calc(100vh - 200px);
+    border-left: 1px solid rgb(60,60,60);
+    border-right: 1px solid rgb(60,60,60);
+}

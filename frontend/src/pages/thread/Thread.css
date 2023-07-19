@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+}
+
+.threadMainContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.threadContainer {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    right: 40px;
+
+    max-width: 500px;
+    width: calc(100vw - 20px);
+
+    padding: 10px;
+    margin: 10px;
+    background-color: #050505;
+}
+
+.topLevel {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+
+    width: 100%;
+}
+.userDetails {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    width: 100%;
+}
+
+.ThreadprofilePic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 40px;
+    width: 40px;
+
+    font-size: 20px;
+    margin: 5px;
+    border-radius: 50%;
+    background-color: #222;
+}
+
+.userNameBlock {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.datetimeBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 10px;
+    font-size: 14px;
+    color: rgb(210,210,210);
+}
+
+.threadContent {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 100%;
+
+    border-left: 2px solid rgb(60,60,60);
+    margin-left: 20px;
+    padding: 5px;
+    padding-left: 25px;
+}
+
+.threadStats {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+
+    color: rgb(60,60,60);
+    font-size: 20px;
+}

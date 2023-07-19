@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.NavmainContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    width: 100vw;
+    height: 60px;
+
+    background-color: #050505;
+    color: white;
+}
+
+.logoSpace {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    left: 10px;
+
+    width: 20vw;
+    min-width: 200px;
+
+    font-size: 24px;
+    font-weight: 600;
+
+    color: blue;
+}
+
+.linksHolder {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-direction: row;
+    right: 10px;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px;
+    margin: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.loginLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(27, 111, 214);
+}
