@@ -8,6 +8,15 @@ function Home() {
         <div className="HomekeyFeatures">
           Explains about the key features.
         </div>
+        <div className="HomekeyFeatures">
+          Better Security
+        </div>
+        <div className="HomekeyFeatures">
+          More friendly UI
+        </div>
+        <div className="HomekeyFeatures">
+          News Updates
+        </div>
     </div>
   )
 }

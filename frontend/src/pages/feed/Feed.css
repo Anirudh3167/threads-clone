@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.FeedMainContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: black;
+    color: white;
+}
+
+.FeedLeftContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 20vw;
+    height: 100vh;
+
+    overflow: scroll;
+}
+
+.FeedMiddleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    max-width: 600px;
+    width: 60vw;
+    min-width: 300px;
+    height: 100vh;
+
+    overflow: scroll;
+    border-right: 2px solid rgb(60,60,60);
+    border-left: 2px solid rgb(60,60,60);
+}
+
+.FeedPostThread {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: calc(100% - 20px);
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid rgb(60,60,60);
+    border-radius: 10px;
+}
+
+.FeedPostTopLevel {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    width: 100%;
+    padding-left: 10px;
+}
+
+.FeedPostProfilePic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+    background-color: #222;
+    font-size: 20px;
+    margin: 5px;
+}
+
+.FeedPostTopContents {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    width: calc(100% - 40px);
+}
+
+.FeedPostUserName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+}
+
+.FeedPostButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 70px;
+    height: 30px;
+
+    border: 2px solid blue;
+    border-radius: 10px;
+    background-color: blue;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.FeedPostButton:hover {
+    background-color: black;
+}
+
+.FeedPostContent {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    width: calc(100% - 30px);
+    height: 60px;
+
+    padding-left: 10px;
+    margin-left: 30px;
+    resize: none;
+    overflow: scroll;
+    border-left: 2px solid rgb(60,60,60);
+    color: rgb(80,80,80);
+    background-color: transparent;
+}
+
+.FeedRightContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 20vw;
+    height: 100vh;
+
+    overflow: scroll;
+}
+
+.FeedPostBottomLevel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    width: calc(100% - 50px);
+
+    padding-left: 0;
+}

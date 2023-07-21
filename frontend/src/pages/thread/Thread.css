@@ -17,18 +17,18 @@
     align-items: flex-start;
     justify-content: center;
     flex-direction: row;
+
+    width: 100%;
 }
 
 .threadContainer {
-    position: relative;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
-    right: 40px;
-
-    max-width: 500px;
-    width: calc(100vw - 20px);
+    
+    max-width: 600px;
+    width: calc(100% - 20px);
 
     padding: 10px;
     margin: 10px;
@@ -107,4 +107,27 @@
 
     color: rgb(60,60,60);
     font-size: 20px;
+}
+
+.threadComments {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+
+    width: calc(100% - 30px);
+
+    margin-left: 26px;
+}
+
+.showReplyBtn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+
+    padding-left: 20px;
+    cursor: pointer;
+    color: rgb(60,60,60);
 }

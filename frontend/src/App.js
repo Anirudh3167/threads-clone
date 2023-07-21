@@ -7,6 +7,7 @@ import About from '../src/pages/About';
 import Profile from './pages/profile';
 import Home from './pages/Home';
 import Thread from './pages/thread/Thread';
+import Feed from './pages/feed/Feed';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path='/profile' element={<Profile />} />
 
           <Route path='/thread' element={<Thread />} />
+          <Route path='/feed' element={<Feed />} />
         </Routes>
       </BrowserRouter>
     </div>
