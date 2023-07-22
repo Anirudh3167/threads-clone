@@ -18,6 +18,9 @@ function HomeNavbar() {
         <a href='/' className='link' >
           Home
         </a>
+        <a href='/feed' className='link' >
+          Feed
+        </a>
         <a href='/about' className='link'>
           About
         </a>

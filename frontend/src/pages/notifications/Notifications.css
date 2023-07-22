@@ -1,0 +1,33 @@
+.notificationHeading {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+
+    font-size: 28px;
+    font-weight: 700;
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.notificationsContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 100%;
+
+    padding: 5px;
+}
+
+.noNotificationsText {
+    display: flex;
+
+    padding: 20px;
+    font-size: 24px;
+    font-weight: 500;
+}

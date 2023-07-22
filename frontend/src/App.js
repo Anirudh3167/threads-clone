@@ -8,6 +8,9 @@ import Profile from './pages/profile';
 import Home from './pages/Home';
 import Thread from './pages/thread/Thread';
 import Feed from './pages/feed/Feed';
+import Notifications from './pages/notifications/Notifications';
+import Settings from './pages/settings/Settings';
+import FindFriends from './pages/friends/FindFriends';
 
 
 function App() {
@@ -36,6 +39,9 @@ function App() {
 
           <Route path='/thread' element={<Thread />} />
           <Route path='/feed' element={<Feed />} />
+          <Route path='/notifications' element={<Notifications />} />
+          <Route path='/settings' element={<Settings />} />
+          <Route path='/find-friends' element={<FindFriends />} />
         </Routes>
       </BrowserRouter>
     </div>
