@@ -12,7 +12,8 @@
     flex-direction: row;
     flex-wrap: nowrap;
 
-    width: 100vw;
+    width: 100%;
+    min-width: 300px;
     height: 100vh;
 
     background-color: black;
@@ -31,6 +32,28 @@
     overflow: scroll;
 }
 
+.feedNavHamburger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 30px;
+    height: 30px;
+}
+
+.activeFeedHamburger > .TopHamburger {
+    transform: rotateZ(45deg) translateY(14px);
+}
+
+.activeFeedHamburger > .MidHamburger {
+    opacity: 0;
+} 
+
+.activeFeedHamburger > .BottomHamburger {
+    transform: rotateZ(-45deg) translateY(-14px);
+}
+
 .FeedNavBar {
     display: flex;
     align-items: center;
@@ -40,10 +63,6 @@
     width: 100%;
 
     margin-top: 100px;
-}
-
-.FeedHamburger {
-    display: none;
 }
 
 .FeedNavbarContents {
@@ -332,4 +351,50 @@
 
     border: 2px solid rgb(60,60,60);
     cursor: pointer;
+}
+
+@media only screen and (max-width:1000px) {
+    .FeedRightContainer {display: none;width: 0;}
+    .FeedMiddleContainer {width: 80w; border-right: 0;}
+    .FeedLeftContainer {min-width: 200px;}
+}
+
+@media only screen and (max-width:500px) {
+    .FeedMainContainer {
+        flex-direction: column;
+    }
+    .FeedLeftContainer {
+        position: fixed;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        top: 0;
+
+        width: 100vw;
+        height: 60px;
+
+        overflow: scroll;
+        padding-top: 15px;
+        padding-left: 20px;
+        background-color: black;
+        z-index: 2;
+    }
+    .feedNavHamburger {display: flex;}
+    .activeFeedHamburger ~ .FeedNavBar {
+        position: absolute;
+        display: flex;
+        z-index: 2;
+    }
+    .FeedNavBar {
+        display: none;
+    }
+    .FeedMiddleContainer {
+        margin-top: 60px;
+
+        width: 100vw;
+
+        border: 0;
+        z-index: 0;
+    }
 }

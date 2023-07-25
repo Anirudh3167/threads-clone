@@ -1,12 +1,184 @@
 .SettingsRightContainer {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-direction: column;
 
-    min-width: 300px;
-    width: 75vw;
-    min-height: 100vh;
+    width: 74vw;
+    height: 100vh;
 
     border-left: 2px solid rgb(60,60,60);
+    padding-left: 10px;
     overflow: scroll;
+    z-index: 1;
+}
+
+.pageSettings {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 100%;
+    min-width: 300px;
+    max-width: 600px;
+    min-height: fit-content;
+
+    padding: 5px;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: rgb(40,40,40);
+}
+
+.SettingsItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: calc(100% - 20px);
+    min-height: 60px;
+
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: rgb(60,60,60);
+}
+
+.toggleBtnContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 60px;
+    height: 40px;
+
+    transition: 1s;
+}
+
+.toggleRectangleBar {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 50px;
+    height: 20px;
+
+    border-radius: 20px;
+    background-color: rgb(80,80,80);
+    z-index: 1;
+    transition: 1s;
+}
+
+.toggleCircleBtn {
+    display: flex;
+
+    width: 25px;
+    height: 25px;
+
+    border-radius: 50%;
+    background-color: rgb(20,20,20);
+    transition: 1s;
+}
+
+.toggleActive > .toggleRectangleBar {
+    background-color: green;
+    justify-content: flex-end;
+}
+
+.siteSettings {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 100%;
+    min-width: 300px;
+    max-width: 600px;
+    min-height: fit-content;
+
+    padding: 5px;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: rgb(40,40,40);
+}
+
+.settingsItemDropDown {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 135px;
+    height: 40px;
+    
+    overflow: visible;
+}
+
+.DropDownCurrent {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 40px;
+
+    border: 2px solid rgb(60,60,60);
+    font-size: 16px;
+    padding: 5px;
+    background-color: rgb(80, 80, 80);
+}
+
+.DropDownMenu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+
+    color: white;
+    font-size: 16px;
+    background-color: black;
+    z-index: 2;
+}
+
+.DropDownItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 40px;
+}
+
+.accountSettingsItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: calc(100% - 20px);
+    min-height: 60px;
+
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: rgb(60,60,60);
+}
+
+@media only screen and (max-width:500px) {
+    .SettingsRightContainer {
+        width: 100vw;
+        margin-top: 60px;
+    }
 }

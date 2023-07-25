@@ -13,9 +13,13 @@ function Feed() {
                      {'uname':'Master','content':'This is second thread content'},
                     ]);
   function handlePost() {
-    let threadData = {'uname' : uname, 'content': postInput};
-    setFeedThreads(current => [threadData,...current]);
-    setPostInput('');
+    if (postInput !== "") {
+        let threadData = {'uname' : uname, 'content': postInput};
+        setFeedThreads(current => [threadData,...current]);
+        setPostInput('');
+    } else {
+        alert("Post Cannot be empty");
+    }
   }
   const handlePostContent = (event)=> {
     setPostInput(event.target.value);

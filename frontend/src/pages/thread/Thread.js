@@ -5,7 +5,7 @@ import '../thread/Thread.css'
 function Thread() {
   const [replies,Setreplies] = useState(false);
   return (
-    <div className='mainContainer'>
+    <div className='singleThreadmainContainer'>
         <div className="threadMainContainer">
             <div className="threadContainer">
                 <div className="topLevel">    

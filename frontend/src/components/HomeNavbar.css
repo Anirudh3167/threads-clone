@@ -26,12 +26,61 @@
     left: 10px;
 
     width: 20vw;
-    min-width: 200px;
+    min-width: 170px;
 
     font-size: 24px;
     font-weight: 600;
-
+    transition: 0.5s;
+    z-index: 0;
     color: blue;
+}
+
+.verticalNavHolder {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    right: 20px;
+    z-index: 1;
+}
+
+.navHamburger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 30px;
+    height: 30px;
+}
+
+.activeHamburger {
+    margin-left: calc(100% - 70px);
+}
+
+.HamburgerLine {
+    display: flex;
+
+    height: 2px;
+    width: 30px;
+
+    background-color: rgb(230,230,230);
+    margin-top: 4px;
+    margin-bottom: 4px;
+    transition: 1s;
+}
+
+.activeHamburger > .TopHamburger {
+    transform: rotateZ(45deg) translateY(14px);
+}
+
+.activeHamburger > .MidHamburger {
+    opacity: 0;
+} 
+
+.activeHamburger > .BottomHamburger {
+    transform: rotateZ(-45deg) translateY(-14px);
 }
 
 .linksHolder {
@@ -41,13 +90,15 @@
     justify-content: end;
     flex-direction: row;
     right: 10px;
+
+    background-color: black;
 }
 
 .link {
     display: flex;
     align-items: center;
     justify-content: center;
-
+    
     padding: 5px;
     margin: 10px;
     color: white;
@@ -58,10 +109,29 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    
     padding: 5px;
     margin: 10px;
     border-radius: 5px;
     cursor: pointer;
     background-color: rgb(27, 111, 214);
+}
+
+@media only screen and (max-width:700px) {
+    .NavmainContainer {
+        align-items: flex-start;
+        padding-top: 10px;
+    }
+    .navHamburger {display: flex;}
+    .linksHolder {display: none;}
+    .activeHamburger ~ .linksHolder {
+        display: flex;
+        flex-direction: column;
+    }
+    .link {
+        width: 150px;
+    }
+    .loginLink {
+        width: 150px;
+    }
 }
