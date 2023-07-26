@@ -8,7 +8,11 @@ import Thread from './pages/thread/Thread';
 import Feed from './pages/feed/Feed';
 import Notifications from './pages/notifications/Notifications';
 import Settings from './pages/settings/Settings';
-import FindFriends from './pages/friends/FindFriends';
+import Following from './pages/following/Following';
+import Collection from './pages/collections/Collection';
+import Chat from './pages/Chat/Chat';
+import Signup from './pages/SignUp/Signup';
+import Signin from './pages/signin/Signin';
 
 
 function App() {
@@ -33,12 +37,16 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/signin' element={<Signin />} />
 
           <Route path='/thread' element={<Thread />} />
           <Route path='/feed' element={<Feed />} />
           <Route path='/notifications' element={<Notifications />} />
           <Route path='/settings' element={<Settings />} />
-          <Route path='/find-friends' element={<FindFriends />} />
+          <Route path='/following' element={<Following />} />
+          <Route path='/collection' element={<Collection />} />
+          <Route path='/chat' element={<Chat />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -105,15 +105,18 @@ function Settings() {
                     </div>
                 </div>
                 <div className="siteSettings">
-                    <div className="accountSettingsItem">
+                    <a href="/about" className="accountSettingsItem">
+                        About Us
+                    </a>
+                    <a href="#" className="accountSettingsItem">
                         Terms and Conditions
-                    </div>
-                    <div className="accountSettingsItem">
+                    </a>
+                    <a href="#" className="accountSettingsItem">
                         Privacy Policy
-                    </div>
-                    <div className="accountSettingsItem">
+                    </a>
+                    <a href="/" className="accountSettingsItem">
                         Logout
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>

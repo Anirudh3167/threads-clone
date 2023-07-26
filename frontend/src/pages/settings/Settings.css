@@ -40,11 +40,10 @@
     min-height: 60px;
 
     border-radius: 10px;
-    padding: 10px;
-    margin: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
     font-size: 20px;
     font-weight: 500;
-    background-color: rgb(60,60,60);
 }
 
 .toggleBtnContainer {
@@ -173,6 +172,8 @@
     margin: 5px;
     font-size: 20px;
     font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
     background-color: rgb(60,60,60);
 }
 

@@ -14,10 +14,10 @@ function FeedLeftNavbar() {
         <div className="FeedNavBar">
             <div className="FeedNavbarContents">
                 <a href="/profile" className="FeedNavbarItem"> Profile </a>
-                <a href="/find-friends" className="FeedNavbarItem"> Friends </a>
+                <a href="/following" className="FeedNavbarItem"> Following </a>
                 <a href="/feed" className="FeedNavbarItem"> Feed </a>
-                <a href="#" className="FeedNavbarItem"> Collections </a>
-                <a href="#" className="FeedNavbarItem"> Chat </a>
+                <a href="/collection" className="FeedNavbarItem"> Collections </a>
+                <a href="/chat" className="FeedNavbarItem"> Chat </a>
                 <a href="/notifications" className="FeedNavbarItem"> Notifications </a>
                 <a href="/settings" className="FeedNavbarItem"> Settings </a>
             </div>

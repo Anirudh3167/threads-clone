@@ -34,8 +34,8 @@ function Notifications() {
                             <div className="NotificationPic"> U </div>
                             <div className="NotificationDetails">
                                 <div className="NotificationTime"> 59min ago</div>
-                                <div className="NotificationMsg">
-                                    <div className="NotificationPerformer">
+                                <div className="NotificationMsg" key={index}>
+                                    <div className="NotificationPerformer" key={index}>
                                         @{notification.performer}
                                     </div>
                                         {notification.action}

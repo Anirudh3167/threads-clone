@@ -1,0 +1,339 @@
+.ChatMiddleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 74vw;
+    height: 100vh;
+
+    border-left: 2px solid rgb(60,60,60);
+    padding-left: 10px;
+    overflow: scroll;
+    z-index: 1;
+}
+
+.ChatRightContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 74vw;
+    height: 100vh;
+
+    border-left: 2px solid rgb(60,60,60);
+    padding-left: 10px;
+    overflow: scroll;
+    z-index: 1;
+}
+
+.ChatTop {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+
+    width: 100%;
+    height: 60px;
+
+    padding: 10px;
+    background-color: #050505;
+}
+
+.ChatBackBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100px;
+    height: 40px;
+
+    padding: 10px;
+    background-color: rgb(210,210,210);
+    color: black;
+    cursor: pointer;
+}
+
+.ChatRecieverDetails {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    height: 100%;
+
+    padding: 10px;
+    text-decoration: none;
+}
+
+.ChatRecieverProfile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+    font-size: 24px;
+    background-color: #222;
+}
+
+.ChatRecieverUserName {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.ChatContentContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 100%;
+    height: calc(100% - 60px);
+}
+
+.ChatPreviousContent {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column-reverse;
+
+    width: 100%;
+    overflow: scroll;
+}
+
+.ChatMessagesWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+
+    width: 100%;
+
+    padding: 10px;
+}
+
+.messagesRecievedWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: calc(100% - 20px);
+}
+
+.messagesRecieved {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    min-width: 150px;
+    
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    background-color: rgb(143, 185, 125);
+    color: black;
+}
+
+.messageTime {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    width: calc(100% - 20px);
+
+    color: rgb(60,60,60);
+}
+
+.messagesSentWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    width: calc(100% - 20px);
+}
+
+.messagesSent {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    min-width: 150px;
+
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    background-color: rgb(63, 178, 13);
+    color: black;
+}
+
+.ChatInputContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    bottom: 0;
+
+    width: 100%;
+    height: 60px;
+
+    padding: 10px;
+}
+
+.ChatInputBox {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    width: calc(100% - 120px);
+    height: 50px;
+
+    background-color: rgb(210,210,210);
+    color: black;
+    padding: 5px;
+    padding-left: 10px;
+    border: 0;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.ChatMsgSendBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100px;
+    height: 50px;
+
+    background-color: green;
+    color:white;
+    font-size: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+}
+
+.ChatContactsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 400px;
+    min-width: 300px;
+}
+
+.ChatContactHead {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+
+    font-size: 28px;
+    font-weight: 700;
+    padding-left: 10px;
+}
+
+.ChatContactItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    width: calc(100% - 10px);
+
+    margin: 5px;
+    cursor: pointer;
+}
+
+.ChatContactProfile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    font-size: 24px;
+    border-radius: 50%;
+    background-color: #222;
+}
+
+.ChatContactUserDetails {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: calc(100% - 40px);
+
+    padding: 5px;
+}
+
+.ChatContactUserName {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: calc(100% - 10px);
+
+    padding: 5px;
+}
+
+.ChatContactLastMsg {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: calc(100% - 10px);
+    height: 30px;
+
+    padding: 5px;
+    overflow: hidden;
+}
+
+.ChatContactUnreadedMsgCount {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 20px;
+    top: 20px;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+    background-color: green;
+    color: white;
+}
+
+@media only screen and (max-width: 500px) {
+    .ChatMiddleContainer {
+        margin-top: 60px;
+        border: 0;
+        width: 100%;
+    }
+    .ChatRightContainer {
+        margin-top: 60px;
+        border: 0;
+        width: 100%;
+    }
+}

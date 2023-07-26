@@ -11,6 +11,7 @@
     flex-direction: row;
 
     width: 100vw;
+    height: 100vh;
 
     background-color: rgb(15,15,15);
     color: white;
@@ -24,8 +25,10 @@
 
     width: 74vw;
     min-width: 300px;
+    height: 100vh;
 
     border-left: 2px solid rgb(60,60,60);
+    overflow: scroll;
 }
 
 .userDetailsContainer {
@@ -149,4 +152,10 @@
 
         margin-top: 60px;
     }
+    .profileMiddleContainer {width: 100%;}
+}
+
+
+@media only screen and (max-width:500px) {
+    .profileMiddleContainer {border: 0;}
 }

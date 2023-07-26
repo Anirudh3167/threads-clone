@@ -4,6 +4,10 @@ import '../pages/Home.css'
 import HomeNavbar from '../components/HomeNavbar.jsx'
 
 function Home() {
+  window.addEventListener("scroll",(e) => {
+    let a = window.scrollY;
+    console.log(a);
+  })
   return (
     <div>
       <HomeNavbar />
