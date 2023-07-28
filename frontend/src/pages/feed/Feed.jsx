@@ -38,8 +38,6 @@ function Feed() {
   },[]);
   return (
     <div className="FeedMainContainer">
-        {Date.now()}
-
 {/* Left Container */}
 
         <FeedLeftNavbar />

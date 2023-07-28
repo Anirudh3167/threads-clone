@@ -32,6 +32,7 @@ const mongoUserSchema = new mongoose.Schema({
     lastname:String,
     dob:String,
     bio:String,
+    follows:[{type:String}],
     profile:String
 });
 const UsersCollection = mongoose.model("User", mongoUserSchema);
@@ -67,6 +68,7 @@ router.post("/",upload.single("profile"),async (req,res) => {
         lastname : req.body.lastname,
         dob : req.body.dob,
         bio : req.body.bio,
+        follows : req.body.follows,
         profile : (req.file) ? req.file.filename : null
     }
     const newUser = new UsersCollection(pay_load);      // Adds the pay_load to mongodb
@@ -106,7 +108,6 @@ router.post("/logout",(req,res) => {
         res.json({result:"success"});
     }
 })
-module.exports = router;
 
 // ****************************************************
 // USER IS LOGGED?
@@ -123,5 +124,6 @@ router.get("/islogged",(req,res) => {
     } catch (err) {
         return res.json({"stats":false})
     }
-
+    
 })
+    module.exports = router;

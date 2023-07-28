@@ -13,6 +13,7 @@ function Profile() {
     const getUser = async () => {
         const res = await axios.get("http://localhost:8080/user",{"withCredentials":true});
         setDetails(res.data);
+        console.log(res.data.follows);
     }
     const userLoggedIn = async () => {
       const res = await axios.get("http://localhost:8080/user/islogged",{"withCredentials":true});

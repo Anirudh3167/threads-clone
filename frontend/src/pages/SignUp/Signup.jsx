@@ -15,6 +15,10 @@ function Signup() {
     formdata.append("dob",dob);
     formdata.append("bio",bio);
     formdata.append("profile",profilePic,profilePic.name);
+    var user_follows = [];
+    follows.forEach((follower) => { if (follower.selected) {user_follows.push(follower.name)}})
+    console.log(user_follows);
+    formdata.append("follows",user_follows);
     console.log(profilePic);
     // const data = {
     //   email : email,
@@ -49,8 +53,8 @@ function Signup() {
   const [intersets,setInterests] = useState([{"name":"Science","selected":false},{"name":"Technology","selected":false},
                                              {"name":"Games","selected":false},{"name":"Politics","selected":false},
                                              {"name":"News","selected":false},{"name":"Space","selected":false}]);
-  const [follows,setFollows] = useState([{"name":"Master","selected":false},{"name":"Ultimatum","selected":false},
-                                         {"name":"Cooper","selected":false},{"name":"Elon","selected":false}]);
+  const [follows,setFollows] = useState([{"name":"Master","selected":false},{"name":"ntgwth","selected":false},
+                                         {"name":"thor","selected":false},{"name":"Ultimatum","selected":false}]);
   const [pageNumber,setPageNumber] = useState('1');
   const validateDetails = (pageno) => {
     if (pageno === '1') {

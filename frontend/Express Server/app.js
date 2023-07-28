@@ -15,8 +15,10 @@ app.use('/public',express.static('../public'));
 
 const userRouter = require("./routes/User");
 const threadsRouter = require("./routes/Threads");
+const chatSockets = require("./routes/Chat");
 app.use('/user',userRouter);
 app.use('/thread',threadsRouter);
+app.use('/chat',chatSockets);
 
 mongoose.connect("mongodb+srv://Master:Master@cluster0.9sttlnd.mongodb.net/?retryWrites=true&w=majority",{
     useNewUrlParser:true,
