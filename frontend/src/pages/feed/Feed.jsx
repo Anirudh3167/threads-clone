@@ -1,12 +1,15 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
+import axios from 'axios'
 
 import '../feed/Feed.css'
 import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar';
 import FeedRightContainer from '../pageComponents/FeedRightContainer';
+import { useNavigate } from 'react-router-dom';
 
 function Feed() {
   let id = 1053;
+  const navigation = useNavigate();
   const [uname,setUname] = useState('Master');
   const [postInput,setPostInput] = useState('');
   const [feedThreads,setFeedThreads] = useState([{'uname':'Master','content':'This is a thread content'},
@@ -24,8 +27,18 @@ function Feed() {
   const handlePostContent = (event)=> {
     setPostInput(event.target.value);
   }
+  const userLoggedIn = async () => {
+    const res = await axios.get("http://localhost:8080/user/islogged",{"withCredentials":true});
+    if (!res.data["stats"]) {
+      navigation("/signin?next=feed");
+    }
+  }
+  useEffect(() => {
+      userLoggedIn();
+  },[]);
   return (
     <div className="FeedMainContainer">
+        {Date.now()}
 
 {/* Left Container */}
 

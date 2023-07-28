@@ -218,6 +218,7 @@
 }
 
 .SignUpProfilePicContainer {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -227,7 +228,24 @@
 
     border-radius: 50%;
     background-color: #222;
-    font-size: 28px;
+    font-size: 18px;
+    overflow: hidden;
+}
+.SignupProfilePicPrompt {
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 10px;
+    bottom: 0;
+
+    height: 50%;
+    width: 100%;
+
+    background-color: rgba(190,190,190,0.3);
+    color: black;
+    cursor: pointer;
+    z-index: 1;
 }
 
 .SignupNames {
@@ -490,9 +508,11 @@
         flex-direction: column;
     }
     .SignupUserProfile {
+        width: 100%;
         padding-bottom: 0px;
     }
     .SignupNames {
+        width: 100%;
         padding-top: 0px;
     }
 }

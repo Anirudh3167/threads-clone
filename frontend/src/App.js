@@ -13,6 +13,7 @@ import Collection from './pages/collections/Collection';
 import Chat from './pages/Chat/Chat';
 import Signup from './pages/SignUp/Signup';
 import Signin from './pages/signin/Signin';
+import Testing from './pages/testing/Testing';
 
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
           <Route path='/following' element={<Following />} />
           <Route path='/collection' element={<Collection />} />
           <Route path='/chat' element={<Chat />} />
+
+          
+          <Route path='/testing' element={<Testing />} />
         </Routes>
       </BrowserRouter>
     </div>

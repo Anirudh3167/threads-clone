@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
+import axios from 'axios'
 
 import '../collections/Collection.css'
 import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar'
 import FeedRightContainer from '../pageComponents/FeedRightContainer'
+import { useNavigate } from 'react-router-dom'
 
 function Collection() {
   const collection_names = ["collect_1","funny","serious","ntg"];
   const [collections,setCollections] = useState(collection_names);
   const [newCollection,setNewCollection] = useState(false);
   const [createCollectionName,setCreateCollectionName] = useState('');
+  const navigation = useNavigate();
   const addCollection = (event) => {
     event.preventDefault();
     if (createCollectionName !== "") {
@@ -16,6 +19,15 @@ function Collection() {
     }
     setNewCollection(false);
   }
+  const userLoggedIn = async () => {
+    const res = await axios.get("http://localhost:8080/user/islogged",{"withCredentials":true});
+    if (!res.data["stats"]) {
+      navigation("/signin?next=collections");
+    }
+  }
+  useEffect(() => {
+      userLoggedIn();
+  },[]);
   return (
     <div className='FeedMainContainer'>
         <FeedLeftNavbar />

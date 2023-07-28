@@ -1,10 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
+import axios from 'axios'
 
 import '../pages/profile.css'
 import FeedLeftNavbar from './pageComponents/FeedLeftNavbar';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
+    const [loggedin,setLoggedIn] = useState(false);
+    const [details,setDetails] = useState([]);
+    const navigation = useNavigate();
+    const getUser = async () => {
+        const res = await axios.get("http://localhost:8080/user",{"withCredentials":true});
+        setDetails(res.data);
+    }
+    const userLoggedIn = async () => {
+      const res = await axios.get("http://localhost:8080/user/islogged",{"withCredentials":true});
+      if (res.data["stats"]) {
+        setLoggedIn(true);
+        getUser();
+      } else {
+        navigation("/signin?next=profile");
+      }
+    }
+    useEffect(() => {
+        userLoggedIn();
+    },[]);
   const [follow,setFollow] = useState(false);
   function handleClick() {
     setFollow(!follow);
@@ -13,12 +34,11 @@ function Profile() {
     <div className='mainContainer'>
         <FeedLeftNavbar />
         <div className="profileMiddleContainer">
-            
             <div className='userDetailsContainer'>
                 <div className="leftblock">
                     <div className="profilePic">
-                        <div className="imgContainer"> M </div>
-                        @Master
+                        <img src={`http://localhost:8080/public/images/${details.profile}`} alt="" className="imgContainer" />
+                        @{details.username}
                         <button className="followBtn" onClick={handleClick} style={follow ? {backgroundColor:'black',border:'2px Solid rgb(40,40,40)'}:{}}>
                             {follow ? `Following` : `Follow`} 
                         </button>
@@ -39,12 +59,12 @@ function Profile() {
                             <div className="statsCount"> 56 </div>
                         </div>
                     </div>
-                    <div className="userBio">Hi, This is the creator of this clone.</div>
+                    <div className="userBio">{details.bio}</div>
                 </div>
             </div>
 
             <div className="userThreadsContainer">
-                User Threads here.
+                {details.bio}
             </div>
         </div>
     </div>

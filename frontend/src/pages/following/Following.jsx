@@ -1,9 +1,11 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import axios from 'axios'
 
 import '../feed/Feed.css'
 import './Following.css'
 import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar';
+import { useNavigate } from 'react-router-dom';
 
 function Following() {
     const user_list = [{"name":"Ultimatum","Bio":"Your friendly neighbour"},
@@ -12,6 +14,16 @@ function Following() {
                     {"name":"stephen","Bio":"Aka Dr Strange. Want to see magic? then follow me"},
                     {"name":"Victor von Doom","Bio":"The king of Latveria. About to become god emperor"}];
     const [users,setUsers] = useState(user_list);
+    const navigation = useNavigate();
+    const userLoggedIn = async () => {
+      const res = await axios.get("http://localhost:8080/user/islogged",{"withCredentials":true});
+      if (!res.data["stats"]) {
+        navigation("/signin?next=following");
+      }
+    }
+    useEffect(() => {
+        userLoggedIn();
+    },[]);
     return (
         <div className="FeedMainContainer">
     

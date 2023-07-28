@@ -1,16 +1,28 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import '../signin/Signin.css'
 import '../SignUp/Signup.css'
 
 function Signin() {
   const navigation = useNavigate();
+  const queryParams = new URLSearchParams(window.location.search);
   const [email,setEmail] = useState("");
   const [pass,setPass] = useState("");
-  const handleSignin = () => {
+  const handleSignin = async () => {
     if (email !== "" && pass !== "") {
-        navigation("/feed");
+        const data = {email:email,password:pass}
+        const res = await axios.post("http://localhost:8080/user/login",data,{"withCredentials":true});
+        if (res.data.result === "success") {
+            const next_link = queryParams.get("next");
+            if (next_link) {
+                console.log(next_link);
+                navigation("/"+next_link);
+            } else {navigation("/");}
+        } else {
+            alert(res.data.remarks);
+        }
     } else {
         alert("Enter your email and password correctly");
     }

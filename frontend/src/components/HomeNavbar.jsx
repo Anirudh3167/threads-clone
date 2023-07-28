@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'
 import '../components/HomeNavbar.css';
+import { useNavigate } from 'react-router-dom';
 
 function HomeNavbar() {
   const [hamburgerActive,setHamburgerActive] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-
+  const navigation = useNavigate();
+  const handleLogout = async () => {
+    const res = await axios.post("http://localhost:8080/user/logout",{},{"withCredentials":true});
+    if (res.data["result"] === "success") {
+      navigation("/");
+      setLoggedIn(false);
+    }
+  }
+  const userLoggedIn = async () => {
+    const res = await axios.get("http://localhost:8080/user/islogged",{"withCredentials":true});
+    if (res.data["stats"]) {setLoggedIn(true);}
+  }
+  useEffect(()=>{
+    userLoggedIn();
+  },[])
   return (
     <div className='NavmainContainer'>
       <div className='logoSpace'>Threads Clone</div>
@@ -35,9 +50,15 @@ function HomeNavbar() {
             </a>
             
           ) : null}
-          <button onClick={()=>{setLoggedIn(!loggedIn);}} className='loginLink' style={loggedIn ? {backgroundColor:"red"}:{}}>
-            {loggedIn ? 'Logout' : 'Login / Signup'}
-          </button>
+          {
+            loggedIn ?
+            <div onClick={() => {handleLogout()}} className='loginLink' style={{backgroundColor:"red"}}>
+              logout
+            </div> :
+            <a href='/signup' className='loginLink'>
+              login / Signup
+            </a>
+          }
         </div>
       </div>
 

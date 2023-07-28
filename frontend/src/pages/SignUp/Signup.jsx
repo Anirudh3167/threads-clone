@@ -1,10 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState,useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 import '../SignUp/Signup.css'
 
 function Signup() {
+  const toBackend = async () => {
+    const formdata = new FormData();
+    formdata.append("email",email);
+    formdata.append("password",pass);
+    formdata.append("username",uname);
+    formdata.append("firstname",fname);
+    formdata.append("lastname",lname);
+    formdata.append("dob",dob);
+    formdata.append("bio",bio);
+    formdata.append("profile",profilePic,profilePic.name);
+    console.log(profilePic);
+    // const data = {
+    //   email : email,
+    //   password : pass,
+    //   username : uname,
+    //   firstname : fname,
+    //   lastname : lname,
+    //   dob : dob,
+    //   bio : bio,
+    //   profile : profilePic 
+    // }
+    const res = await axios.post("http://localhost:8080/user",formdata,{"withCredentials":true});
+    navigation("/profile");
+  }
+  const uploadImage = (event) => {
+    event.preventDefault();
+    imageInputRef.current.click();
+  }
+  const changeImage = (event) => {
+    setProfilePic(event.target.files[0]);
+  }
   const navigation = useNavigate();
+  const imageInputRef = useRef(null);
   const [fname,setFname] = useState("");
   const [lname,setLname] = useState("");
   const [dob,setDob] = useState("");
@@ -12,6 +45,7 @@ function Signup() {
   const [bio,setBio] = useState("A thread clone user");
   const [email,setEmail] = useState("");
   const [pass,setPass] = useState("");
+  const [profilePic,setProfilePic] = useState("");
   const [intersets,setInterests] = useState([{"name":"Science","selected":false},{"name":"Technology","selected":false},
                                              {"name":"Games","selected":false},{"name":"Politics","selected":false},
                                              {"name":"News","selected":false},{"name":"Space","selected":false}]);
@@ -41,7 +75,8 @@ function Signup() {
       const selectedFollowsCount = follows.filter((follow) => follow.selected).length;
       console.log(selectedFollowsCount);
       if (selectedFollowsCount >= 3) {
-        navigation("/feed");
+        // navigation("/feed");
+        toBackend();
       }
       else {
         alert("You must select atleast three choices");
@@ -55,7 +90,7 @@ function Signup() {
                 <div className="SignupBoxContainer">
                     <div className="SignupFirstDetails">
                         <input type='text' placeholder='Email' value={email} onInput={(e) => {setEmail(e.target.value);}} className="SignupInputBox" />
-                        <input type="text" placeholder='Password' value={pass} onInput={(e) => {setPass(e.target.value);}} className="SignupInputBox" />
+                        <input type="password" placeholder='Password' value={pass} onInput={(e) => {setPass(e.target.value);}} className="SignupInputBox" />
                         <div className="signinText">Already have account? Click here to <a href="/signin">Sign in</a></div>
                         <div className="SignupBtn" onClick={() => validateDetails('1')}> proceed </div>
                     </div>
@@ -76,7 +111,16 @@ function Signup() {
                     <div className="SignupUserBasicDetails">
                         <div className="SignupUserProfile">
                             <div className="SignUpProfileItemHead"> Profile Pic </div>
-                            <div className="SignUpProfilePicContainer"> A </div>
+                            <input type="file" ref={imageInputRef} onChange={(e) => {changeImage(e)}} style={{display:"none"}} />
+                            <div className="SignUpProfilePicContainer" onClick={(e) => {uploadImage(e)}}>
+                              <div className="SignupProfilePicPrompt"> Upload </div>
+                            {
+                              (profilePic === "") ?
+                                ""
+                              :
+                              <img src={URL.createObjectURL(profilePic)} className='SignUpProfilePicContainer' alt="" width="100%" height="100%" />
+                            }
+                            </div>
                         <div className="SignupNamesItem">
                             <div className="SignUpItemHead"> User Name </div>
                             <input type="text" className='SignUpItemInput' value={uname} onInput={(e) => {setUname(e.target.value);}} />
@@ -93,7 +137,7 @@ function Signup() {
                             </div>
                             <div className="SignupNamesItem">
                                 <div className="SignUpItemHead"> Date of Birth </div>
-                                <input type="text" className='SignUpItemInput' value={dob} onInput={(e) => {setDob(e.target.value);}} />
+                                <input type="date" className='SignUpItemInput' value={dob} onInput={(e) => {setDob(e.target.value);}} />
                             </div>
                         </div>
                     </div>

@@ -1,9 +1,11 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import axios from 'axios'
 
 import '../feed/Feed.css'
 import '../settings/Settings.css'
 import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar';
+import { useNavigate } from 'react-router-dom';
 
 function Settings() {
     const toggleBtns = {
@@ -17,6 +19,7 @@ function Settings() {
     const [chatbotSetting,setChatbotSetting] = useState('None');
     const [hideFeedDropDown,setFeedDropDown] = useState(true);
     const [hideChatbotDropDown,setChatbotDropDown] = useState(true);
+    const navigation = useNavigate();
 
     const toggleAction = (event,key) => {
         event.preventDefault();
@@ -33,6 +36,21 @@ function Settings() {
         setChatbotSetting(ChatbotType);
         setChatbotDropDown(true);
     }
+    const handlelogout = async () => {
+        const res = await axios.post("http://localhost:8080/user/logout",{},{"withCredentials":true});
+        if (res.data["result"] === "success") {
+            navigation("/");
+        }
+    }
+    const userLoggedIn = async () => {
+      const res = await axios.get("http://localhost:8080/user/islogged",{"withCredentials":true});
+      if (!res.data["stats"]) {
+        navigation("/signin?next=settings");
+      }
+    }
+    useEffect(() => {
+        userLoggedIn();
+    },[]);
     return (
         <div className="FeedMainContainer">
     
@@ -114,9 +132,9 @@ function Settings() {
                     <a href="#" className="accountSettingsItem">
                         Privacy Policy
                     </a>
-                    <a href="/" className="accountSettingsItem">
+                    <div className="accountSettingsItem" onClick={() => {handlelogout()}}>
                         Logout
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
