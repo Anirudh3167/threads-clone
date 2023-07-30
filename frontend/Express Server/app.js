@@ -9,7 +9,7 @@ const secretKey = "secretKey";
 const app = express();
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
-app.use(cors({origin:'http://localhost:3000',credentials:true}));
+app.use(cors({origin:'http://192.168.29.188:3000',credentials:true}));
 app.use(cookieParser());
 app.use('/public',express.static('../public'));
 

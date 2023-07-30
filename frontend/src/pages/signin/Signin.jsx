@@ -13,7 +13,7 @@ function Signin() {
   const handleSignin = async () => {
     if (email !== "" && pass !== "") {
         const data = {email:email,password:pass}
-        const res = await axios.post("http://localhost:8080/user/login",data,{"withCredentials":true});
+        const res = await axios.post("http://192.168.29.188:8080/user/login",data,{"withCredentials":true});
         if (res.data.result === "success") {
             const next_link = queryParams.get("next");
             if (next_link) {

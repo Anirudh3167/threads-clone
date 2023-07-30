@@ -28,7 +28,7 @@ function Feed() {
     setPostInput(event.target.value);
   }
   const userLoggedIn = async () => {
-    const res = await axios.get("http://localhost:8080/user/islogged",{"withCredentials":true});
+    const res = await axios.get("http://192.168.29.188:8080/user/islogged",{"withCredentials":true});
     if (!res.data["stats"]) {
       navigation("/signin?next=feed");
     }

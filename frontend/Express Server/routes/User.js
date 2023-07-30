@@ -52,6 +52,7 @@ router.get("/",async (req,res) => {
         const payload = jwt.verify(token, secretKey);
         const email = payload["pay_load"].email;
         const UsersData = await UsersCollection.find({email:email});
+        // console.log(UsersData[0]);
         res.send(UsersData[0]);
     } catch (err) {
         return res.status(401).json({ error: 'Unauthorized - Invalid token' });
@@ -71,6 +72,7 @@ router.post("/",upload.single("profile"),async (req,res) => {
         follows : req.body.follows,
         profile : (req.file) ? req.file.filename : null
     }
+    console.log(req.body.follows);
     const newUser = new UsersCollection(pay_load);      // Adds the pay_load to mongodb
     await newUser.save();
     console.log("new User Added");
@@ -88,7 +90,7 @@ router.post("/login",async (req,res) => {
     const password = req.body.password;
     const UsersData = await UsersCollection.find({email:email});
     if (UsersData[0]["password"] === password) {
-        const pay_load = UsersData[0];
+        var pay_load = UsersData[0];
         const token = jwt.sign({pay_load},secretKey,{expiresIn:"3h"});
         res.cookie('jwtKey', token, { httpOnly: true });
         res.json({result:"success"});
@@ -126,4 +128,52 @@ router.get("/islogged",(req,res) => {
     }
     
 })
-    module.exports = router;
+
+// ****************************************************
+// OTHER USER DETAILS
+// ****************************************************
+router.get("/getUser/:username",async (req,res) => {
+    const username = req.params.username;
+    const UsersData = await UsersCollection.find({username:username});
+    try {
+
+        const response = {
+            status : "ok",
+            username : UsersData[0].username,
+            firstname : UsersData[0].firstname,
+            lastname : UsersData[0].lastname,
+            bio : UsersData[0].bio,
+            profile : UsersData[0].profile
+        }
+        res.json(response);
+    } catch(e) {
+        res.json({status:"Invalid user"});
+    }
+})
+
+// ****************************************************
+// USER FOLLOWS
+// ****************************************************
+router.post("/setFollows",async (req,res) => {
+    console.log("request recieved");
+    const follows = req.body.follows;
+    console.log(follows);
+    const token = req.cookies.jwtKey;
+    
+    if (!token) {
+        return res.json({"stats":false})
+    }
+    try {
+        const payload = jwt.verify(token, secretKey);
+        const username = payload.pay_load.username;
+        const UserData = await UsersCollection.updateOne(
+            {username:username},
+            {$set : {follows:follows}}
+        );
+        res.json({stats : true});
+    } catch (err) {
+        return res.json({"stats":false})
+    }
+})
+
+module.exports = router;

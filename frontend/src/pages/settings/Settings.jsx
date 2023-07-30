@@ -37,13 +37,13 @@ function Settings() {
         setChatbotDropDown(true);
     }
     const handlelogout = async () => {
-        const res = await axios.post("http://localhost:8080/user/logout",{},{"withCredentials":true});
+        const res = await axios.post("http://192.168.29.188:8080/user/logout",{},{"withCredentials":true});
         if (res.data["result"] === "success") {
             navigation("/");
         }
     }
     const userLoggedIn = async () => {
-      const res = await axios.get("http://localhost:8080/user/islogged",{"withCredentials":true});
+      const res = await axios.get("http://192.168.29.188:8080/user/islogged",{"withCredentials":true});
       if (!res.data["stats"]) {
         navigation("/signin?next=settings");
       }

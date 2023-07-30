@@ -8,14 +8,14 @@ function HomeNavbar() {
   const [loggedIn, setLoggedIn] = useState(false);
   const navigation = useNavigate();
   const handleLogout = async () => {
-    const res = await axios.post("http://localhost:8080/user/logout",{},{"withCredentials":true});
+    const res = await axios.post("http://192.168.29.188:8080/user/logout",{},{"withCredentials":true});
     if (res.data["result"] === "success") {
       navigation("/");
       setLoggedIn(false);
     }
   }
   const userLoggedIn = async () => {
-    const res = await axios.get("http://localhost:8080/user/islogged",{"withCredentials":true});
+    const res = await axios.get("http://192.168.29.188:8080/user/islogged",{"withCredentials":true});
     if (res.data["stats"]) {setLoggedIn(true);}
   }
   useEffect(()=>{
@@ -55,7 +55,7 @@ function HomeNavbar() {
             <div onClick={() => {handleLogout()}} className='loginLink' style={{backgroundColor:"red"}}>
               logout
             </div> :
-            <a href='/signup' className='loginLink'>
+            <a href='/signin' className='loginLink'>
               login / Signup
             </a>
           }
