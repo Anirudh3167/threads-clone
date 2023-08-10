@@ -7,7 +7,7 @@ import './Following.css'
 import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar';
 import { useNavigate } from 'react-router-dom';
 
-function Following() {
+function Following({ address }) {
     const user_list = [{"name":"Ultimatum","Bio":"Your friendly neighbour"},
                     {"name":"Nicholas","Bio":"S.H.I.E.L.D Agent. Currently working at secret wars"},
                     {"name":"Nebula","Bio":"A galaxy far from the earth"},
@@ -16,7 +16,7 @@ function Following() {
     const [users,setUsers] = useState(user_list);
     const navigation = useNavigate();
     const userLoggedIn = async () => {
-      const res = await axios.get("http://192.168.29.188:8080/user/islogged",{"withCredentials":true});
+      const res = await axios.get(`${address}/user/islogged`,{"withCredentials":true});
       if (!res.data["stats"]) {
         navigation("/signin?next=following");
       }
@@ -28,7 +28,7 @@ function Following() {
         <div className="FeedMainContainer">
     
     {/* Left Container */}   
-            <FeedLeftNavbar />
+            <FeedLeftNavbar address={address} />
     {/* Right Container */}
             <div className="FollowingRightContainer">
                  <div className="FollowingContainer">

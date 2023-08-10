@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import '../feed/Feed.css'
 
-function FeedRightContainer() {
+function FeedRightContainer({ address }) {
     const [frndSuggestions,setFrndSuggestions] = useState([{'uname':'Ulitmatum','desc':'follows You'},
                                                         {'uname':'Ultimatum','desc':'Suggested for You'},
                                                         {'uname':'Ultimatum','desc':'Suggested for You'},

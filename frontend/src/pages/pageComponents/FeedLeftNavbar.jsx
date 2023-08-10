@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import '../feed/Feed.css'
 
-function FeedLeftNavbar() {
+function FeedLeftNavbar({ address }) {
   const [feedHamburgerActive,setFeedHamburgerActive] = useState(false);
   return (
     <div className="FeedLeftContainer" style={feedHamburgerActive ? {height:"100vh"}:{}}>

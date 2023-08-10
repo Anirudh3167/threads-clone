@@ -8,7 +8,7 @@ import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar';
 import FeedRightContainer from '../pageComponents/FeedRightContainer';
 import { useNavigate } from 'react-router-dom';
 
-function Notifications() {
+function Notifications({ address }) {
     const navigation = useNavigate();
     const [notifications,setNotifications] = useState([{'reciever':'Master','performer':'Ultimatum','action':'follows you'},
                                                     {'reciever':'Master','performer':'Ultimatum','action':'likes your thread 123'},
@@ -17,7 +17,7 @@ function Notifications() {
                                                     {'reciever':'Master','performer':'Ultimatum','action':'likes your thread 243'},
                                                     ]);
     const userLoggedIn = async () => {
-        const res = await axios.get("http://192.168.29.188:8080/user/islogged",{"withCredentials":true});
+        const res = await axios.get(`${address}/user/islogged`,{"withCredentials":true});
         if (!res.data["stats"]) {
         navigation("/signin?next=notifications");
         }
@@ -30,7 +30,7 @@ function Notifications() {
     
     {/* Left Container */}
     
-            <FeedLeftNavbar />
+            <FeedLeftNavbar address={address} />
     
     {/* Middle Container */}
     
@@ -60,7 +60,7 @@ function Notifications() {
             </div>
     
     {/* Right Container */}
-            <FeedRightContainer />
+            <FeedRightContainer address={address} />
         </div>
       )
 }

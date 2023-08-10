@@ -7,7 +7,7 @@ import '../settings/Settings.css'
 import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar';
 import { useNavigate } from 'react-router-dom';
 
-function Settings() {
+function Settings({ address }) {
     const toggleBtns = {
                         'darkMode':false,
                         'personalChat':false,
@@ -37,13 +37,13 @@ function Settings() {
         setChatbotDropDown(true);
     }
     const handlelogout = async () => {
-        const res = await axios.post("http://192.168.29.188:8080/user/logout",{},{"withCredentials":true});
+        const res = await axios.post(`${address}/user/logout`,{},{"withCredentials":true});
         if (res.data["result"] === "success") {
             navigation("/");
         }
     }
     const userLoggedIn = async () => {
-      const res = await axios.get("http://192.168.29.188:8080/user/islogged",{"withCredentials":true});
+      const res = await axios.get(`${address}/user/islogged`,{"withCredentials":true});
       if (!res.data["stats"]) {
         navigation("/signin?next=settings");
       }
@@ -55,7 +55,7 @@ function Settings() {
         <div className="FeedMainContainer">
     
     {/* Left Container */}
-        <FeedLeftNavbar />
+        <FeedLeftNavbar address={address} />
     {/* Right Container */}
             <div className="SettingsRightContainer">
                 <div className="pageSettings">

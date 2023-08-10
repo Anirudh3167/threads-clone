@@ -5,7 +5,7 @@ import axios from 'axios';
 import '../signin/Signin.css'
 import '../SignUp/Signup.css'
 
-function Signin() {
+function Signin({ address }) {
   const navigation = useNavigate();
   const queryParams = new URLSearchParams(window.location.search);
   const [email,setEmail] = useState("");
@@ -13,7 +13,7 @@ function Signin() {
   const handleSignin = async () => {
     if (email !== "" && pass !== "") {
         const data = {email:email,password:pass}
-        const res = await axios.post("http://192.168.29.188:8080/user/login",data,{"withCredentials":true});
+        const res = await axios.post(`${address}/user/login`,data,{"withCredentials":true});
         if (res.data.result === "success") {
             const next_link = queryParams.get("next");
             if (next_link) {

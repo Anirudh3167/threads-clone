@@ -1,46 +1,64 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios';
 import io from 'socket.io-client'
+import Webcam from 'react-webcam'
+
 
 import '../testing/Testing.css'
 
-const socket = io.connect("http://192.168.29.188:3001");
+const socket = io.connect("http://localhost:3001");
 function Testing() {
-  const [sendMsg,setSendMsg] = useState("");
-  const [chat,setChat] = useState([]);
-  const [recieveMsg,setRecieveMsg] = useState("");
+  const [myVideo,setMyVideo] = useState(false);
   const [room,setRoom] = useState("");
-  const [dataSent,setDataSent] = useState({sendMsg:"",recieveMsg:""});
-  const handleSend = () => {
-    setDataSent((prevState) => ({...prevState,sendMsg:sendMsg}));
-    socket.emit("send_message",{message:sendMsg, room:room});
-  }
+  const roomRef = useRef(room);
+  // Video Streaming
+  const myStream = useRef(null);
+  const otherStream = useRef(null);
   const joinRoom = () => {
     if (room !== "") {
-      socket.emit("join_room",{room:room});
+      socket.emit("test_join",{room:room});
     }
   }
-  useEffect(()=>{
-    socket.on("recieve_message",(data)=>{
-      console.log(data);
-      setDataSent((prevState) => ({...prevState,recieveMsg:data}));
-      setRecieveMsg(data);
-    })
-  },[socket])
+  useEffect(() => {
+    const sendVideo = () => {
+      if (myStream.current) {
+        const videoData = myStream.current.getScreenshot(); // Get the video frame as base64
+        console.log("Video is sending");
+        console.log(`Room:${room} , Room Ref:${roomRef.current}`);
+        socket.emit('stream', {video : videoData, room : room}); // Send video frame to the server
+      }
+    };
+
+    const interval = setInterval(sendVideo, 100); // Send frames every 100ms
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [room,socket]);
+  useEffect(() => {
+
+    socket.on('otherStream', (data) => {
+      console.log("Recieveing the Video");
+      // Update the video element with the received video frame
+      otherStream.current.src = `${data.video}`;
+    });
+  },[socket]);
+
+
   return (
     <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",backgroundColor:"black",color:"white",width:"100vw",height:"100vh"}}>
-    <div className="testingChatContainer">
-      <div className="testingChatTop">
-        <input type="text" className='testingChatInputBox' placeholder='Message' onInput={(e) => {setSendMsg(e.target.value);}} />
-        <button className="testingSendBtn" onClick={() => {handleSend()}}> Send </button>
+    <div className="joinRoomContainer">
+      <input type="text" onChange={(e) => {setRoom(e.target.value);}} placeholder='Enter your room id' className='InputBox' />
+      <button className='joinBtn' onClick={() => {joinRoom()}}> Join </button>
+    </div>
+    {/* Myself Video */}
+    <div className="VideosContainer">
+      <div className="myVideoContainer">
+        <div className="showMyVideoBtn" onClick={() => {setMyVideo(!myVideo)}}> {myVideo ? "hide My video" : "Show My Video"} </div>
+        { myVideo ? <Webcam ref={myStream} className='videoBox' /> : "" }
       </div>
-      <div className="testingMessageContainer">
-        <div className="testingMessageSent">Message sent :<br /> {dataSent.sendMsg}</div>
-        <div className="testingMessageRecieved">Message Recieved : <br /> {dataSent.recieveMsg}</div>
-      </div>
-      <div className="testingChatTop" style={{position:"absolute",bottom:"10px"}}>
-        <input type="text" className='testingChatInputBox' placeholder="Room Number" onInput={(e) => {setRoom(e.target.value);}} />
-        <button className="testingSendBtn" onClick={() => {joinRoom()}}> Join </button>
+      <div className="otherVideoContainer">
+        {otherStream ? <img  autoPlay ref={otherStream} playsInline className='videoBox' /> : ""}
       </div>
     </div>
     </div>

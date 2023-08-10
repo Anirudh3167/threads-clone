@@ -7,10 +7,10 @@ import '../pages/profile.css'
 import FeedLeftNavbar from './pageComponents/FeedLeftNavbar';
 import { useNavigate } from 'react-router-dom';
 
-function Profile() {
+function Profile({address}) {
     // Login  
     const userLoggedIn = async () => {
-        const res = await axios.get("http://192.168.29.188:8080/user/islogged",{"withCredentials":true});
+        const res = await axios.get(`${address}/user/islogged`,{"withCredentials":true});
         if (res.data["stats"]) {
           setLoggedIn(true);
           getUser(null);
@@ -41,13 +41,13 @@ function Profile() {
         var res = "";
         if (queryUsername !== null) {   // Other user details
             setMyData(false);
-            res = await axios.get(`http://192.168.29.188:8080/user/getUser/${queryUsername}`,{"withCredentials":true});
+            res = await axios.get(`${address}/user/getUser/${queryUsername}`,{"withCredentials":true});
             if (res.data.status === "ok") {     // If such user exists
                 if (followsRef.current.indexOf(res.data.username) !== -1) {setFollow(true);}
                 setDetails(res.data);
             } else {navigation("/");}
         } else {    // Base user details
-            res = await axios.get("http://192.168.29.188:8080/user",{"withCredentials":true});
+            res = await axios.get(`${address}/user`,{"withCredentials":true});
             setFollows(res.data.follows);
             if (!paramsData["uname"]) {setDetails(res.data);}
         }
@@ -58,13 +58,13 @@ function Profile() {
         const updatedFollows = follow ? follows.filter((follow) => follow !== paramsData["uname"]) : [...follows, paramsData["uname"]];
         if (updatedFollows.length > follows.length) {   // Creates room for both the users
             console.log("Sending request to create room");
-            axios.post("http://192.168.29.188:8080/chat/createRoom",{user: paramsData["uname"]},{"withCredentials":true});
+            axios.post(`${address}/chat/createRoom`,{user: paramsData["uname"]},{"withCredentials":true});
         }
         setFollows(updatedFollows);
 
         // Sending the request to backend
         const body = {follows : updatedFollows}
-        const res = await axios.post("http://192.168.29.188:8080/user/setFollows",body,{"withCredentials":true});
+        const res = await axios.post(`${address}/user/setFollows`,body,{"withCredentials":true});
         
         // Changing the UI on response from backend
         if (res.data.stats) {
@@ -77,12 +77,12 @@ function Profile() {
   }
   return (
         <div className='mainContainer'>
-            <FeedLeftNavbar />
+            <FeedLeftNavbar address={address} />
             <div className="profileMiddleContainer">
                 <div className='userDetailsContainer'>
                     <div className="leftblock">
                         <div className="profilePic">
-                            <img src={`http://192.168.29.188:8080/public/images/${details.profile}`} alt="" className="imgContainer" />
+                            <img src={`${address}/public/images/${details.profile}`} alt="" className="imgContainer" />
                             @{details.username}
                             {
                                 myData ? "" :

@@ -41,7 +41,7 @@
     justify-content: flex-start;
     flex-direction: row;
 
-    width: 100%;
+    width:  calc(100% - 45px);
 }
 .userDetails {
     display: flex;
@@ -64,6 +64,7 @@
     margin: 5px;
     border-radius: 50%;
     background-color: #222;
+    overflow: hidden;
 }
 
 .userNameBlock {
@@ -118,6 +119,16 @@
     width: calc(100% - 30px);
 
     margin-left: 26px;
+}
+
+.threadStatsItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;
 }
 
 .showReplyBtn {

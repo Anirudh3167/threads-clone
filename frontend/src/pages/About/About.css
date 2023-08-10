@@ -1,0 +1,151 @@
+.addressMainContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background-color: black;
+    color: white;
+}
+.addressContainerSlide1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100vw;
+    height: 100vh;
+
+    padding: 10px;
+    background-color: black;
+    color: white;
+}
+
+.addressMainHeading {
+    position: relative;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    font-size: 30px;
+    font-weight: 700;
+    animation: headingAnimate 1s ease-in-out;
+}
+
+@keyframes headingAnimate {
+    0% {
+        left: -100px;
+        color: transparent;
+    }
+    100% {
+        left: 0px;
+        color: white;
+    }
+}
+
+.addressMainContentContainer {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+
+    animation: contentAnimate 1s ease-in-out;
+}
+
+@keyframes contentAnimate {
+    0% {
+        color: transparent;
+    }
+    100% {
+        color: white;
+    }
+}
+.addresContentItem {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    list-style-type: disc;
+
+    width: 100%;
+
+    font-size: 18px;
+    padding: 5px;
+    padding-left: 60px;
+    margin: 5px;
+}
+
+.addressContainerSlide2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100vw;
+    height: 100vh;
+
+    padding: 10px;
+    background-color: black;
+    color: white;
+}
+
+.slideHeading {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    min-width: 300px;
+    width: 100%;
+    max-width: 800px;
+    height: 60px;
+
+    font-size: 30px;
+    font-weight: 700;
+    padding-left: 10px;
+}
+
+.slideTwoContentContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    min-width: 300px;
+    width: 100%;
+    max-width: 800px;
+    min-height: 100px;
+
+    background-color: rgb(10,10,10);
+    animation: techstakAnim 1s ease-out;
+}
+
+@keyframes techstakAnim {
+    0% {
+        width: 0px;
+        flex-wrap: nowrap;
+        opacity: 0;
+    }
+    100% {
+        max-width: 800px;
+        width: 100%;
+        flex-wrap: wrap;
+        opacity: 1;
+    }
+}
+
+.slideTwoContentItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 150px;
+    height: 150px;
+
+    margin: 5px;
+    font-size: 18px;
+    background-color: #222;
+}

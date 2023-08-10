@@ -3,19 +3,19 @@ import axios from 'axios'
 import '../components/HomeNavbar.css';
 import { useNavigate } from 'react-router-dom';
 
-function HomeNavbar() {
+function HomeNavbar({address}) {
   const [hamburgerActive,setHamburgerActive] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const navigation = useNavigate();
   const handleLogout = async () => {
-    const res = await axios.post("http://192.168.29.188:8080/user/logout",{},{"withCredentials":true});
+    const res = await axios.post(`${address}/user/logout`,{},{"withCredentials":true});
     if (res.data["result"] === "success") {
       navigation("/");
       setLoggedIn(false);
     }
   }
   const userLoggedIn = async () => {
-    const res = await axios.get("http://192.168.29.188:8080/user/islogged",{"withCredentials":true});
+    const res = await axios.get(`${address}/user/islogged`,{"withCredentials":true});
     if (res.data["stats"]) {setLoggedIn(true);}
   }
   useEffect(()=>{

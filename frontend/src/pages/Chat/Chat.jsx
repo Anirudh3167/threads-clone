@@ -6,9 +6,9 @@ import '../Chat/Chat.css'
 import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar'
 import { useNavigate } from 'react-router-dom';
 
-function Chat() {
+function Chat({address,socketPort}) {
   // Sockets
-  const socket = io.connect("http://192.168.29.188:3001");
+  const socket = io.connect(`${address.slice(0,address.lastIndexOf(":"))}:${socketPort}`);
   const [loggedIn,setLoggedIn] = useState(false);
   const [details,setDetails] = useState([]);
   const [room,setRoom] = useState("");
@@ -23,11 +23,19 @@ function Chat() {
   socket.on("add_room",(data) => {
     setRoom(data.room); 
     console.log(data);
+    getChat(data.room);
   })
 
   socket.on("recieve_message",(data)=>{
       sendMsg(data.sender,data.room,data.message,data.time);
   })
+  const getChat = (room) => {
+      socket.emit("get_chat",{room:room});
+      socket.on("recieve_chat",(data) => {
+          console.log(data);
+          setChatConversation(data);
+        })
+  }
 
   // Lame Chat functionality
   const [contacts,setContacts] = useState([]);
@@ -37,7 +45,7 @@ function Chat() {
   const [reciever,setReciever] = useState("");
   const [msg,setMsg] = useState("");
   const navigation = useNavigate();
-  const openChat = (contact) => {
+  const openChat = async (contact) => {
     console.log("calling from open Chat function");
     joinRoom(contact);
     setReciever(contact);
@@ -54,10 +62,16 @@ function Chat() {
     event.preventDefault();
     setContactSearch(event.target.value);
   }
+  const handleSendMsgKeyPress = (event) => {
+    event.preventDefault();
+    if (event.key === "Enter") {
+        handleSend();
+    }
+  }
 
   // User login check
   const userLoggedIn = async () => {
-    const res = await axios.get("http://192.168.29.188:8080/user/islogged",{"withCredentials":true});
+    const res = await axios.get(`${address}/user/islogged`,{"withCredentials":true});
     if (res.data["stats"]) {
         setLoggedIn(true);
         getUser();
@@ -66,7 +80,7 @@ function Chat() {
       }
   }
   const getUser = async () => {
-      var res = await axios.get("http://192.168.29.188:8080/user",{"withCredentials":true});
+      var res = await axios.get(`${address}/user`,{"withCredentials":true});
       setDetails(res.data);
       setContacts(res.data.follows);
   }
@@ -75,7 +89,7 @@ function Chat() {
   },[]);
   return (
     <div className='FeedMainContainer'>
-        <FeedLeftNavbar />
+        <FeedLeftNavbar address={address} />
         {
             chatActive ? 
             <div className="ChatRightContainer">
@@ -118,7 +132,7 @@ function Chat() {
                 </div>
 
                     <div className="ChatInputContainer">
-                        <input className='ChatInputBox' type="text" onInput={(e) => {setMsg(e.target.value);}} value={msg} placeholder='Type your message' />
+                        <input className='ChatInputBox' type="text" onInput={(e) => {setMsg(e.target.value);}} onKeyUp={(e)=>{handleSendMsgKeyPress(e)}} value={msg} placeholder='Type your message' />
                         <div className="ChatMsgSendBtn" onClick={() => {handleSend();}}> Send </div>
                     </div>
                 </div>

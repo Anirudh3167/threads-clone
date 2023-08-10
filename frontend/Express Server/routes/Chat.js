@@ -8,6 +8,15 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const secretKey = "SecretKey";
 
+// MongoDB
+const mongoChatSchema = new mongoose.Schema({
+    room : String,
+    message : String,
+    time : String,
+    sender : String
+});
+const ChatCollection = mongoose.model("Chat", mongoChatSchema);
+
 // sockets
 const { Server } = require("socket.io");
 const server = http.createServer(app);
@@ -16,6 +25,7 @@ const io = new Server(server,{cors:{
     methods : ["GET","POST"],
 }})
 server.listen(3001, () => {console.log("Socket server started");})
+
 io.on("connection",(socket) => {
     socket.on("connect_error", (err) => {
         console.log(`connect_error due to ${err.message}`);
@@ -38,9 +48,33 @@ io.on("connection",(socket) => {
             socket.emit("add_room",{room:room});
         }
     })
-    socket.on("send_message",(data) => {
+    socket.on("send_message",async (data) => {
+        const chat = new ChatCollection(data);
+        const resp = await chat.save();
+        console.log(resp);
         console.log(`Room : ${data.room} \t ${data.sender}:${data.message}`);
         socket.to(data.room).emit("recieve_message",data);
+    })
+    socket.on("get_chat",async (data) => {
+        try {
+
+            const chat = await ChatCollection.find({
+                room:data.room,
+            }).sort({time:-1});
+            // chat.forEach((chatMsg) => {console.log(chatMsg["message"])})
+            socket.emit("recieve_chat",chat);
+        } catch (err) {
+            console.log(err);
+        }
+    })
+
+    // Socket functions for testing page.
+    socket.on("test_join",(data) => {
+        socket.join(data.room);
+        socket.emit("test_joined",data);
+    });
+    socket.on("stream",(data) => {
+        socket.to(data.room).emit("otherStream",data);
     })
 })
 

@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import '../SignUp/Signup.css'
 
-function Signup() {
+function Signup({ address }) {
   const toBackend = async () => {
     const formdata = new FormData();
     formdata.append("email",email);
@@ -30,7 +30,7 @@ function Signup() {
     //   bio : bio,
     //   profile : profilePic 
     // }
-    const res = await axios.post("http://192.168.29.188:8080/user",formdata,{"withCredentials":true});
+    const res = await axios.post(`${address}/user`,formdata,{"withCredentials":true});
     navigation("/profile");
   }
   const uploadImage = (event) => {

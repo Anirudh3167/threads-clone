@@ -201,15 +201,14 @@
     justify-content: center;
 
     width: calc(100% - 120px);
-    height: 50px;
+    height: 40px;
 
-    background-color: rgb(210,210,210);
-    color: black;
+    background-color: rgb(40,40,40);
+    color: white;
     padding: 5px;
-    padding-left: 10px;
+    padding-left: 15px;
     border: 0;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-radius: 20px;
 }
 
 .ChatMsgSendBtn {
@@ -218,13 +217,13 @@
     justify-content: center;
 
     width: 100px;
-    height: 50px;
+    height: 40px;
 
     background-color: green;
     color:white;
     font-size: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-radius: 20px;
+    margin-left: 5px;
     cursor: pointer;
 }
 
@@ -353,6 +352,7 @@
         margin-top: 60px;
         border: 0;
         width: 100%;
+        height: calc(100% - 60px);
     }
     .ChatPreviousContent {
         height: calc(100% - 120px);

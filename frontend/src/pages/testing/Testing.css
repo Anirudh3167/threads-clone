@@ -1,102 +1,100 @@
-.testingChatContainer {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-
-    width: 100vw;
-    height: 100vh;
-
-    padding: 10px;
-    overflow: scroll;
-}
-
-.testingChatTop {
+.joinRoomContainer {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
 
-    width: calc(100% - 20px);
+    width: 100%;
+    max-width: 800px;
+    min-width: 300px;
     height: 60px;
-
-    padding: 10px;
 }
 
-.testingChatInputBox {
+.InputBox {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 80vw;
-    max-width: 400px;
-    min-width: 250px;
-    height: 40px;
+    width: calc(100% - 110px);
+    height: 50px;
 
-    padding: 5px;
-    border-radius: 5px;
-    background-color: rgb(40,40,40);
+    padding: 10px;
+    font-size: 18px;
     color: white;
+    background-color: transparent;
+    border: 2px solid rgb(60,60,60);
+    border-radius: 5px;
 }
 
-.testingSendBtn {
+.InputBox::placeholder {color: rgb(140,140,140);}
+
+.joinBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100px;
+    height: 50px;
+
+    margin: 5px;
+    background-color: rgb(40,40,40);
+    border-radius: 10px;
+    color: white;
+    border: 0;
+}
+
+.VideosContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    width: 100%;
+    min-width: 300px;
+    max-width: 800px;
+}
+
+.myVideoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 300px;
+}
+
+.showMyVideoBtn {
     display: flex;
     align-items: center;
     justify-content: center;
 
     width: 150px;
-    height: 40px;
+    height: 60px;
 
-    padding: 5px;
-    border-radius: 5px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 10px;
+    font-size: 18px;
     background-color: green;
-    color: white;
+    border-radius: 10px;
     cursor: pointer;
+    color: white;
 }
 
-.testingMessageContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 10px;
-}
-
-.testingMessageSent {
+.videoBox {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
 
-    min-width: 250px;
-    min-height: 100px;
+    width: 300px;
+    height:300px;
 
-    background-color: grey;
-    border: 2px solid rgb(60,60,60);
-    margin: 10px;
-    padding: 10px;
-    color: white;
-    border-radius: 10px;
+    margin: 5px;
 }
 
-.testingMessageRecieved {
+.otherVideoContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
 
-    min-width: 250px;
-    min-height: 100px;
-
-    background-color: rgb(30, 185, 30);
-    border: 2px solid rgb(60,60,60);
-    margin: 10px;
-    padding: 10px;
-    color: white;
-    border-radius: 10px;
+    width: 300px;
 }

@@ -6,7 +6,7 @@ import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar'
 import FeedRightContainer from '../pageComponents/FeedRightContainer'
 import { useNavigate } from 'react-router-dom'
 
-function Collection() {
+function Collection({ address }) {
   const collection_names = ["collect_1","funny","serious","ntg"];
   const [collections,setCollections] = useState(collection_names);
   const [newCollection,setNewCollection] = useState(false);
@@ -20,7 +20,7 @@ function Collection() {
     setNewCollection(false);
   }
   const userLoggedIn = async () => {
-    const res = await axios.get("http://localhost:8080/user/islogged",{"withCredentials":true});
+    const res = await axios.get(`${address}/user/islogged`,{"withCredentials":true});
     if (!res.data["stats"]) {
       navigation("/signin?next=collections");
     }
@@ -30,7 +30,7 @@ function Collection() {
   },[]);
   return (
     <div className='FeedMainContainer'>
-        <FeedLeftNavbar />
+        <FeedLeftNavbar address={address} />
         <div className="CollectionsMiddleContainer">
             <div className="CollectionContainer">
                 <div className="NewCollectionBox" onClick={() => {setNewCollection(!newCollection)}}>
@@ -55,7 +55,7 @@ function Collection() {
                 }
             </div>
         </div>
-        <FeedRightContainer />
+        <FeedRightContainer  address={address}/>
     </div>
   )
 }

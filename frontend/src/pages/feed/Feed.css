@@ -199,6 +199,30 @@
 
 .FeedPostContent::placeholder {color: rgb(80,80,80);}
 
+.FeedPostContentImages {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px;
+    height: 300px;
+
+    overflow: scroll;
+}
+
+.FeedPostImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 290px;
+
+    margin: 5px;
+}
+
 .FeedPostBottomLevel {
     display: flex;
     align-items: center;

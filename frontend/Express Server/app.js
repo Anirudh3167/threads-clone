@@ -6,10 +6,12 @@ const port = process.env.PORT || 8080;
 const cors = require("cors");
 const secretKey = "secretKey";
 
+// Setting the address.
+
 const app = express();
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
-app.use(cors({origin:'http://192.168.29.188:3000',credentials:true}));
+app.use(cors({origin:"http://localhost:3000",credentials:true}));
 app.use(cookieParser());
 app.use('/public',express.static('../public'));
 
@@ -17,21 +19,8 @@ const userRouter = require("./routes/User");
 const threadsRouter = require("./routes/Threads");
 const chatSockets = require("./routes/Chat");
 app.use('/user',userRouter);
-app.use('/thread',threadsRouter);
+app.use('/threads',threadsRouter);
 app.use('/chat',chatSockets);
-
-mongoose.connect("mongodb+srv://Master:Master@cluster0.9sttlnd.mongodb.net/?retryWrites=true&w=majority",{
-    useNewUrlParser:true,
-    useUnifiedTopology:true,
-});
-
-mongoose.connection.once("open",()=>{console.log("DataBase Connection Open!")});
-
-const threadSchema = new mongoose.Schema({
-    title:String,
-    content:String
-});
-const Thread = mongoose.model("Thread", threadSchema);
 
 app.get("/", async (req,res)=>{
 

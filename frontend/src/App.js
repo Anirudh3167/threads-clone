@@ -1,7 +1,9 @@
 import './App.css';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 
-import About from '../src/pages/About';
+import { address, socketPort } from './security/ipAddress'
+
+import About from './pages/About/About';
 import Profile from './pages/profile';
 import Home from './pages/Home';
 import Thread from './pages/thread/Thread';
@@ -17,38 +19,25 @@ import Testing from './pages/testing/Testing';
 
 
 function App() {
-  // Test API Call
-  // function getAPI() {
-  //   console.log("clicked");
-  //   fetch("http://127.0.0.1:8080/hello-World/12/234", { mode: "cors" })
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error('Network response was not ok');
-  //       }
-  //       return response.text();
-  //     })
-  //     .then((data) => console.log(data))
-  //     .catch((error) => console.log(error));
-  // }
-  
+  // Address initiation
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/profile/:uname' element={<Profile />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/signin' element={<Signin />} />
+          <Route path="/" element={<Home address={address} />} />
+          <Route path="/about" element={<About address={address} />} />
+          <Route path='/profile' element={<Profile address={address} />} />
+          <Route path='/profile/:uname' element={<Profile address={address} />} />
+          <Route path='/signup' element={<Signup address={address} />} />
+          <Route path='/signin' element={<Signin address={address} />} />
 
-          <Route path='/thread' element={<Thread />} />
-          <Route path='/feed' element={<Feed />} />
-          <Route path='/notifications' element={<Notifications />} />
-          <Route path='/settings' element={<Settings />} />
-          <Route path='/following' element={<Following />} />
-          <Route path='/collection' element={<Collection />} />
-          <Route path='/chat' element={<Chat />} />
+          {/* <Route path='/thread' element={<Thread />} /> */}
+          <Route path='/feed' element={<Feed address={address} />} />
+          <Route path='/notifications' element={<Notifications address={address} />} />
+          <Route path='/settings' element={<Settings address={address} />} />
+          <Route path='/following' element={<Following address={address} />} />
+          <Route path='/collection' element={<Collection address={address} />} />
+          <Route path='/chat' element={<Chat address={address} socketPort={socketPort} />} />
 
           
           <Route path='/testing' element={<Testing />} />
