@@ -13,6 +13,7 @@ function FeedLeftNavbar({ address }) {
         </div>
         <div className="FeedNavBar">
             <div className="FeedNavbarContents">
+                <a href="/search" className="FeedNavbarItem"> Search </a>
                 <a href="/profile" className="FeedNavbarItem"> Profile </a>
                 <a href="/following" className="FeedNavbarItem"> Following </a>
                 <a href="/feed" className="FeedNavbarItem"> Feed </a>

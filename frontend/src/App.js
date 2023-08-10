@@ -16,6 +16,7 @@ import Chat from './pages/Chat/Chat';
 import Signup from './pages/SignUp/Signup';
 import Signin from './pages/signin/Signin';
 import Testing from './pages/testing/Testing';
+import Search from './pages/Search/Search';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home address={address} />} />
           <Route path="/about" element={<About address={address} />} />
+          <Route path='/search' element={<Search address={address} />} />
           <Route path='/profile' element={<Profile address={address} />} />
           <Route path='/profile/:uname' element={<Profile address={address} />} />
           <Route path='/signup' element={<Signup address={address} />} />
