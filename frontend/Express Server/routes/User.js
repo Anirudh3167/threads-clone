@@ -176,4 +176,19 @@ router.post("/setFollows",async (req,res) => {
     }
 })
 
+// ****************************************************
+// SEARCH USERS
+// ****************************************************
+router.get("/search", async (req,res) => {
+    const search = req.query.query;
+    const resp = await UsersCollection.find({ 
+        $or : [
+            {username: { $regex: `.*${search}.*`, $options: 'i' } },
+            {firstname: { $regex: `.*${search}.*`, $options: 'i' }},
+            {lastname: { $regex: `.*${search}.*`, $options: 'i' }}
+        ]
+    });
+    res.json({status:true, users : resp})
+})
+
 module.exports = router;

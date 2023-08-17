@@ -69,4 +69,30 @@ router.post("/",upload.array("image"), async (req,res) => {
         res.json({stats:false});
     }
 })
+
+// ##########################################################
+// THREADS SEARCH
+// ##########################################################
+router.get('/search', async (req,res) => {
+    const search = req.query.query;
+    const resp = await ThreadsCollection.find({ 
+        $or : [
+            { "message.text" : { $regex: `.*${search}.*`, $options: 'i' } },
+        ]
+    });
+    res.json({status:true, threads : resp})
+})
+
+// ###########################################################
+// USER THREADS
+// ###########################################################
+router.get('/get-user-threads', async (req,res) => {
+    const username = req.query.username;
+    const resp = await ThreadsCollection.find({
+        $or : [
+            { username : username},
+        ]
+    })
+    res.json({status:true,threads : resp})
+})
 module.exports = router;

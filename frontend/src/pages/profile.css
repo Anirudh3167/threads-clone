@@ -20,7 +20,7 @@
 .profileMiddleContainer {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
 
     width: 74vw;
@@ -136,14 +136,13 @@
 .userThreadsContainer {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-direction: column;
 
-    max-width: 800px;
+    max-width: 700px;
     width: 100vw;
     min-width: 300px;
     height: calc(100vh - 200px);
-    border-left: 1px solid rgb(60,60,60);
-    border-right: 1px solid rgb(60,60,60);
 }
 
 @media only screen and (max-width:700px) {

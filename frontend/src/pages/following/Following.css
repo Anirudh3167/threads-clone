@@ -125,11 +125,15 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: nowrap;
 
     width: 100%;
-    min-height: 30px;
+    height: 40px;
 
     font-size: 18px;
+    padding: 5px;
+    overflow: hidden;
 }
 
 .FollowersContainer {
@@ -150,5 +154,14 @@
         border: 0;
         width: 100%;
         margin-top: 60px;
-    }    
+    }
+    .FollowingUserDetails {
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width:310px) {
+    .FollowingUserItem {
+        flex-wrap: wrap;
+    }
 }
