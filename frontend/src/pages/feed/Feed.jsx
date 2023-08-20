@@ -9,6 +9,13 @@ import { useNavigate } from 'react-router-dom';
 import { BiCommentDetail, BiRepost, BiShareAlt, BiSolidDislike, BiSolidLike } from 'react-icons/bi';
 
 function Feed({address}) {
+  // Dark Mode or Light Mode.
+  useEffect(()=>{
+    if (localStorage.getItem('displayMode')) {
+        document.documentElement.style.setProperty('--bg-clr','255,255,255');
+        document.documentElement.style.setProperty('--fg-clr','0,0,0');
+    }
+  })
   // Image variables
   const [Threadimages,setThreadImages] = useState([]);
   const [TestImage,setTestImage] = useState("");

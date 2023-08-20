@@ -32,7 +32,8 @@
 
     padding: 10px;
     margin: 10px;
-    background-color: #050505;
+    background-color: rgba(var(--bg-clr),0.8);
+    color: rgba(var(--fg-clr),1);
 }
 
 .topLevel {
@@ -83,7 +84,7 @@
 
     margin-right: 10px;
     font-size: 14px;
-    color: rgb(210,210,210);
+    color: rgba(var(--fg-clr),0.6);
 }
 
 .threadContent {

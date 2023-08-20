@@ -117,8 +117,9 @@
 
     font-weight: 400;
     border-radius: 25px;
-    background-color: white;
-    color: black;
+    background-color: rgb(var(--fg-clr));
+    color: rgb(var(--bg-clr));
+    cursor: pointer;
 }
 
 .FollowingUserBio {

@@ -7,6 +7,13 @@ import FeedRightContainer from '../pageComponents/FeedRightContainer'
 import { useNavigate } from 'react-router-dom'
 
 function Collection({ address }) {
+  // Dark Mode or Light Mode.
+  useEffect(()=>{
+    if (localStorage.getItem('displayMode')) {
+        document.documentElement.style.setProperty('--bg-clr','255,255,255');
+        document.documentElement.style.setProperty('--fg-clr','0,0,0');
+    }
+  })
   const collection_names = ["collect_1","funny","serious","ntg"];
   const [collections,setCollections] = useState(collection_names);
   const [newCollection,setNewCollection] = useState(false);

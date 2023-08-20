@@ -16,8 +16,9 @@
     min-width: 300px;
     height: 100vh;
 
-    background-color: black;
-    color: white;
+    transition: 0.5s;
+    background-color: rgb(var(--bg-clr));
+    color: rgb(var(--fg-clr));
 }
 
                                                         /* Left Container */
@@ -78,7 +79,9 @@
     align-items: center;
     justify-content: flex-start;
 
-    width: 150px;
+    min-width: 150px;
+    width: 100%;
+    max-width: 200px;
     height: 40px;
 
     font-size: 20px;
@@ -88,7 +91,7 @@
 }
 
 .FeedNavbarItem:hover {
-    background-color: rgb(40,40,40);
+    background-color: rgba(var(--fg-clr),0.2);
 }
 
                                                         /* Middle Container */
@@ -173,11 +176,13 @@
     background-color: blue;
     cursor: pointer;
     transition: 0.5s;
+    color: white;
 }
 
 .FeedPostButton:hover {
-    background-color: black;
-    border: 2px solid rgb(60,60,60);
+    color: rgb(var(--fg-clr));
+    background-color: rgb(var(--bg-clr));
+    border: 2px solid rgb(var(--fg-clr),0.7);
 }
 
 .FeedPostContent {

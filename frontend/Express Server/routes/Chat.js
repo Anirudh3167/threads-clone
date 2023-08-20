@@ -51,7 +51,6 @@ io.on("connection",(socket) => {
     socket.on("send_message",async (data) => {
         const chat = new ChatCollection(data);
         const resp = await chat.save();
-        console.log(resp);
         console.log(`Room : ${data.room} \t ${data.sender}:${data.message}`);
         socket.to(data.room).emit("recieve_message",data);
     })

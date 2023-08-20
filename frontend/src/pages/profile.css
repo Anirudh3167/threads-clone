@@ -13,8 +13,8 @@
     width: 100vw;
     height: 100vh;
 
-    background-color: rgb(15,15,15);
-    color: white;
+    background-color: rgba(var(--bg-clr),0.9);
+    color: rgb(var(--fg-clr));
 }
 
 .profileMiddleContainer {

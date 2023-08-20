@@ -7,6 +7,13 @@ import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar'
 import { useNavigate } from 'react-router-dom';
 
 function Chat({address,socketPort}) {
+  // Dark Mode or Light Mode.
+  useEffect(()=>{
+    if (localStorage.getItem('displayMode')) {
+        document.documentElement.style.setProperty('--bg-clr','255,255,255');
+        document.documentElement.style.setProperty('--fg-clr','0,0,0');
+    }
+  })
   // Sockets
   const socket = io.connect(`${address.slice(0,address.lastIndexOf(":"))}:${socketPort}`);
   const [loggedIn,setLoggedIn] = useState(false);

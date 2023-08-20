@@ -9,6 +9,13 @@ import FeedRightContainer from '../pageComponents/FeedRightContainer';
 import { useNavigate } from 'react-router-dom';
 
 function Notifications({ address }) {
+    // Dark Mode or Light Mode.
+    useEffect(()=>{
+      if (localStorage.getItem('displayMode')) {
+          document.documentElement.style.setProperty('--bg-clr','255,255,255');
+          document.documentElement.style.setProperty('--fg-clr','0,0,0');
+      }
+    })
     const navigation = useNavigate();
     const [notifications,setNotifications] = useState([{'reciever':'Master','performer':'Ultimatum','action':'follows you'},
                                                     {'reciever':'Master','performer':'Ultimatum','action':'likes your thread 123'},

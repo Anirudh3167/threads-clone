@@ -26,6 +26,8 @@
     overflow: hidden;
 }
 
+.SearchInputBox {color: rgb(var(--fg-clr));}
+
 @media only screen and (max-width:500px) {
     .SearchRightContainer {
         width: 100vw;

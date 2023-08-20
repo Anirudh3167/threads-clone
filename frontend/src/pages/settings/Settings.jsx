@@ -4,12 +4,14 @@ import axios from 'axios'
 
 import '../feed/Feed.css'
 import '../settings/Settings.css'
+import '../../index.css'
+
 import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar';
 import { useNavigate } from 'react-router-dom';
 
 function Settings({ address }) {
     const toggleBtns = {
-                        'darkMode':false,
+                        'darkMode':localStorage.getItem('displayMode') ? true : false,
                         'personalChat':false,
                         'recieveNotifications':true,
                         'personalizedAds':false
@@ -20,6 +22,19 @@ function Settings({ address }) {
     const [hideFeedDropDown,setFeedDropDown] = useState(true);
     const [hideChatbotDropDown,setChatbotDropDown] = useState(true);
     const navigation = useNavigate();
+
+    useEffect(()=>{
+        // Dark Mode.
+        if (toggleBtn["darkMode"]) {
+            localStorage.setItem('displayMode','light');
+            document.documentElement.style.setProperty('--bg-clr','255,255,255');
+            document.documentElement.style.setProperty('--fg-clr','0,0,0');
+        } else {
+            localStorage.removeItem('displayMode');
+            document.documentElement.style.setProperty('--fg-clr','255,255,255');
+            document.documentElement.style.setProperty('--bg-clr','0,0,0');
+        }
+    },[toggleBtn]);
 
     const toggleAction = (event,key) => {
         event.preventDefault();
@@ -61,7 +76,7 @@ function Settings({ address }) {
                 <div className="pageSettings">
                     <div className="SettingsItem">
                         Dark mode
-                        <div className={`toggleBtnContainer ${toggleBtn["darkMode"] ? "toggleActive":""}`} onClick={(e) => {toggleAction(e,"darkMode")}}>
+                        <div className={`toggleBtnContainer ${toggleBtn["darkMode"] ?  "" : "toggleActive"}`} onClick={(e) => {toggleAction(e,"darkMode")}}>
                             <div className="toggleRectangleBar">
                                 <div className="toggleCircleBtn"></div>
                             </div>

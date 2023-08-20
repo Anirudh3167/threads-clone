@@ -6,6 +6,13 @@ import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar'
 import { BiCommentDetail, BiRepost, BiShareAlt, BiSolidDislike, BiSolidLike } from 'react-icons/bi';
 
 function Search({address}) {
+  // Dark Mode or Light Mode.
+  useEffect(()=>{
+    if (localStorage.getItem('displayMode')) {
+        document.documentElement.style.setProperty('--bg-clr','255,255,255');
+        document.documentElement.style.setProperty('--fg-clr','0,0,0');
+    }
+  })
   const [searchInput,setSearchInput] = useState('');
   const [seraching,setSearching] = useState(false);
   const [userResults,setUserResults] = useState([]);
@@ -29,7 +36,6 @@ function Search({address}) {
           "query" : event.target.value
         }
       })
-      setSearching(false);
       if (res.data.status) {
         // Removing the current user from the list.
         setUserResults(res.data.users.filter(user => user.username !== userDetails.username));
@@ -38,6 +44,7 @@ function Search({address}) {
         // Getting the relevant threads
         setFeedThreads(thread_res.data.threads);
       }
+      setSearching(false);
     } else  {
       setSearching(false);
       setUserResults([]);
@@ -68,9 +75,13 @@ function Search({address}) {
             <input type="text" className="InputBox SearchInputBox" placeholder='Search here' onChange={(e) => {handleSearch(e)}} />
             {
               seraching ? "searching" : (
-              userResults.length !== 0 ?
+              (userResults.length !== 0 || feedThreads.length !== 0) ?
               <div className="FollowingContainer">
-              <div className="FollowingHeading"> Users </div>
+                {
+                  userResults.length !== 0 ?
+                  <div className="FollowingHeading"> Users </div>
+                  : ""
+                }
               <div className="FollowingUsersContainer" style={{width:"100%",maxWidth:"800px",minWidth:"300px"}}>
                   {
                       userResults.map((user,index) => (
@@ -95,7 +106,11 @@ function Search({address}) {
                   }
                   
               </div>
-              <div className="FollowingHeading"> Threads </div>
+              {
+                feedThreads.length !== 0 ?
+                <div className="FollowingHeading"> Threads </div>
+                : ""
+              }
               {feedThreads.map((thread,index)=>(
                 <div className="threadContainer" style={{width:"100%",maxWidth:"800px",minWidth:"300px"}} key={index}>
                     <div className="topLevel">    

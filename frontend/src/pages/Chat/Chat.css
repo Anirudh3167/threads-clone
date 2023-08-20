@@ -39,7 +39,7 @@
     height: 60px;
 
     padding: 10px;
-    background-color: #050505;
+    background-color: rgb(var(--bg-clr));
 }
 
 .ChatBackBtn {
@@ -52,7 +52,7 @@
 
     padding: 10px;
     background-color: rgb(210,210,210);
-    color: black;
+    color: rgb(var(--fg-clr));
     cursor: pointer;
 }
 
@@ -203,8 +203,8 @@
     width: calc(100% - 120px);
     height: 40px;
 
-    background-color: rgb(40,40,40);
-    color: white;
+    background-color: silver;
+    color: rgb(var(--fg-clr));
     padding: 5px;
     padding-left: 15px;
     border: 0;

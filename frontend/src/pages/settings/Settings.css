@@ -28,7 +28,7 @@
     border-radius: 10px;
     margin-top: 5px;
     margin-bottom: 5px;
-    background-color: rgb(40,40,40);
+    background-color: rgba(var(--fg-clr),0.2);
 }
 
 .SettingsItem {
@@ -70,7 +70,6 @@
     border-radius: 20px;
     background-color: rgb(80,80,80);
     z-index: 1;
-    transition: 1s;
 }
 
 .toggleCircleBtn {
@@ -81,13 +80,13 @@
 
     border-radius: 50%;
     background-color: rgb(20,20,20);
-    transition: 1s;
+    transition: 0.5s;
+    transform: translateX(0px);
 }
 
-.toggleActive > .toggleRectangleBar {
-    background-color: green;
-    justify-content: flex-end;
-}
+.toggleActive > .toggleRectangleBar {background-color: green;}
+
+.toggleActive > .toggleRectangleBar > .toggleCircleBtn {transform: translateX(30px);}
 
 .siteSettings {
     display: flex;
@@ -104,7 +103,7 @@
     border-radius: 10px;
     margin-top: 5px;
     margin-bottom: 5px;
-    background-color: rgb(40,40,40);
+    background-color: rgba(var(--fg-clr),0.2);
 }
 
 .settingsItemDropDown {
@@ -132,7 +131,7 @@
     border: 2px solid rgb(60,60,60);
     font-size: 16px;
     padding: 5px;
-    background-color: rgb(80, 80, 80);
+    background-color: rgba(var(--fg-clr),0.2);
 }
 
 .DropDownMenu {
@@ -144,9 +143,9 @@
 
     width: 100%;
 
-    color: white;
+    color: rgb(var(--fg-clr));
     font-size: 16px;
-    background-color: black;
+    background-color: rgb(60,60,60);
     z-index: 2;
 }
 
@@ -174,7 +173,7 @@
     font-weight: 500;
     text-decoration: none;
     cursor: pointer;
-    background-color: rgb(60,60,60);
+    background-color: rgba(var(--fg-clr),0.2);
 }
 
 @media only screen and (max-width:500px) {
