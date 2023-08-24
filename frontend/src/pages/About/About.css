@@ -80,7 +80,7 @@
 .addressContainerSlide2 {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
 
     width: 100vw;
@@ -106,32 +106,35 @@
     padding-left: 10px;
 }
 
+@keyframes techstakHeadAnim {
+    0% {
+        margin-left: -400px;
+    }
+    100% {
+        margin-left: 0;
+    }
+}
+
 .slideTwoContentContainer {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-evenly;
     flex-direction: row;
-    flex-wrap: wrap;
 
     min-width: 300px;
     width: 100%;
     max-width: 800px;
-    min-height: 100px;
 
     background-color: rgb(10,10,10);
-    animation: techstakAnim 1s ease-out;
 }
 
 @keyframes techstakAnim {
     0% {
-        width: 0px;
-        flex-wrap: nowrap;
+        width: 0;
         opacity: 0;
     }
     100% {
-        max-width: 800px;
         width: 100%;
-        flex-wrap: wrap;
         opacity: 1;
     }
 }
@@ -148,4 +151,12 @@
     margin: 5px;
     font-size: 18px;
     background-color: #222;
+}
+
+@media only screen and (max-width:640px) {
+    .slideTwoContentContainer {
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+    }
 }

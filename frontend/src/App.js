@@ -33,7 +33,7 @@ function App() {
           <Route path='/signup' element={<Signup address={address} />} />
           <Route path='/signin' element={<Signin address={address} />} />
 
-          {/* <Route path='/thread' element={<Thread />} /> */}
+          <Route path='/thread' element={<Thread />} />
           <Route path='/feed' element={<Feed address={address} />} />
           <Route path='/notifications' element={<Notifications address={address} />} />
           <Route path='/settings' element={<Settings address={address} />} />

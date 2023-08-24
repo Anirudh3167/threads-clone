@@ -4,6 +4,8 @@ import '../thread/Thread.css'
 
 function Thread() {
   const [replies,Setreplies] = useState(false);
+  const [threeDots,setThreeDots] = useState(false);
+  const [otherUser,setOtherUser] = useState(true);
   return (
     <div className='singleThreadmainContainer'>
         <div className="threadMainContainer">
@@ -25,6 +27,19 @@ function Thread() {
                 </div>
                 <div className="threadComments">
                     No comments yet.
+                </div>
+                <div className="threadEditContainer">
+                    <div className="threeDotsContainer" onClick={() => {setThreeDots(!threeDots)}}>
+                        {` . . . `}
+                    </div>
+                    <div className="threadReportContainer" style={threeDots ? {display:"flex"} : {display:"none"}}>
+                        {otherUser ? 
+                            <div className="threadReportItem"> Report </div>
+                        :
+                            <div className="threadReportItem"> Edit </div>
+                        }
+                        <div className="threadReportItem"> Add Collection </div>
+                    </div>
                 </div>
             </div>
         </div>

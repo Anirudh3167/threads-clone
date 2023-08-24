@@ -20,6 +20,7 @@ function Feed({address}) {
   const [Threadimages,setThreadImages] = useState([]);
   const [TestImage,setTestImage] = useState("");
   useEffect(()=>{setTestImage(Threadimages[0])},[Threadimages]);
+  let threeDots = [];
   const ImageInputRef = useRef(null);
   // Normal Variables
   let id = 1053;
@@ -57,6 +58,13 @@ function Feed({address}) {
         alert("Post Cannot be empty");
     }
   }
+  const showEditOptions = (id) => {
+    var element = document.getElementById(id);
+    var disp = element.style.display;
+    
+    element.style.display = (disp === "flex") ? "none" : "flex";
+  }
+
   const updateThreadImages = (e) => {
     // console.log(Threadimages);
     console.log("Uploading files");
@@ -149,6 +157,10 @@ function Feed({address}) {
                             </div>
                         : ""
                         }
+                        <div className="showReplyBtn"
+                        style={{fontSize:"14px",cursor:"unset",alignItems:"flex-start",padding:"0"}}>
+                            Last Edited : {new Date(thread.time).toLocaleTimeString()} 
+                        </div>
                         <div className="threadStats">
                             {/* comment | Share | Repost | Likes */}
                             <BiCommentDetail className='threadStatsItem' />
@@ -185,6 +197,19 @@ function Feed({address}) {
                     </div>
                 </div> : ""
                 }
+                <div className="threadEditContainer">
+                    <div className="threeDotsContainer" onClick={() => {showEditOptions("Edit_" + index)}}>
+                        {` . . . `}
+                    </div>
+                    <div className="threadReportContainer" id={`Edit_${index}`} style={{display:"none"}}>
+                        {thread.username !== details.username ? 
+                            <div className="threadReportItem"> Report </div>
+                        :
+                            <div className="threadReportItem"> Edit </div>
+                        }
+                        <div className="threadReportItem"> Add Collection </div>
+                    </div>
+                </div>
                 </div>
             ))}
                 
