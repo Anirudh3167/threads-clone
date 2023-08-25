@@ -9,8 +9,6 @@ const cors = require("cors");
 const secretKey = "secretKey";
 const serverless = require('serverless-http');
 
-module.exports.handler = serverless(app);
-
 // Setting the address.
 
 const app = express();
@@ -108,3 +106,7 @@ mongoose.connect(process.env.MONGODB_CLUSTER_URL,{
 });
 
 mongoose.connection.once("open",()=>{console.log("DataBase Connection Open!")});
+
+
+
+module.exports.handler = serverless(app);
