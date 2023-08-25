@@ -7,6 +7,9 @@ const cookieParser = require('cookie-parser');
 const port = process.env.PORT || 8080;
 const cors = require("cors");
 const secretKey = "secretKey";
+const serverless = require('serverless-http');
+
+module.exports.handler = serverless(app);
 
 // Setting the address.
 
@@ -20,9 +23,9 @@ app.use('/public',express.static('./public'));
 const userRouter = require("./routes/User");
 const threadsRouter = require("./routes/Threads");
 const chatSockets = require("./routes/Chat");
-app.use('/user',userRouter);
-app.use('/threads',threadsRouter);
-app.use('/chat',chatSockets);
+app.use('/api/user',userRouter);
+app.use('/api/threads',threadsRouter);
+app.use('/api/chat',chatSockets);
 
 app.get("/", async (req,res)=>{
 
@@ -35,22 +38,11 @@ app.get("/", async (req,res)=>{
 
 })
 
-app.post("/new", async (req,res)=>{
-   
-        const newThread = new Thread({
-            title : req.body.title,
-            content : req.body.content
-        });
-        await newThread.save();
-        console.log("Saved Successfully ");
-        res.send(newThread);
-})
-
 // ***************************************
 // Testing Type URL
 // ***************************************
 
-app.post("/hello-World/:id/:part",(req,res) => {
+app.post("/api/hello-World/:id/:part",(req,res) => {
     const pay_load = {
         id:req.params.id,
         part:req.params.part
@@ -63,7 +55,7 @@ app.post("/hello-World/:id/:part",(req,res) => {
     // res.send(`Hello World with id:${req.params.id} with part:${req.params.part}`);
 })
 
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     const payload = {
       username: req.body.username,
       password: req.body.password,
@@ -73,7 +65,7 @@ app.post('/login', (req, res) => {
     res.json({ result: 'success' });
   });
 
-app.get("/get-details",(req,res) => {
+app.get("/api/get-details",(req,res) => {
     const token = req.cookies.jwt;
     
     if (!token) {
