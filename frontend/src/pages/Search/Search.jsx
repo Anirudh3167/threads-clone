@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Search.css'
 import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar'
 import { BiCommentDetail, BiRepost, BiShareAlt, BiSolidDislike, BiSolidLike } from 'react-icons/bi';
@@ -19,7 +19,21 @@ function Search({address}) {
   const [userDetails,setUserDetails] = useState([]);
   const [feedThreads,setFeedThreads] = useState([]);
   const [replies,Setreplies] = useState(false);
+  const [followingUsers, setFollowingUsers] = useState([]);
+  useEffect(()=>{
+    setFollowingUsers(userResults.map(user => user.follows.indexOf(userDetails.username) != -1))
+    },[userResults])
+
+  const toggleFollow = (e,index) => {
+    e.preventDefault();
+    
+    const newFollowingUsers = [...followingUsers];
+    newFollowingUsers[index] = !newFollowingUsers[index];
+    setFollowingUsers(newFollowingUsers);
+  };
   const navigation = useNavigate();
+
+  
 
   const handleSearch = async(event) => {
     setSearching(true);
@@ -76,7 +90,7 @@ function Search({address}) {
             {
               seraching ? "searching" : (
               (userResults.length !== 0 || feedThreads.length !== 0) ?
-              <div className="FollowingContainer">
+              <div className="FollowingContainer" style={{maxWidth:"100%",minWidth:"300px"}}>
                 {
                   userResults.length !== 0 ?
                   <div className="FollowingHeading"> Users </div>
@@ -85,23 +99,24 @@ function Search({address}) {
               <div className="FollowingUsersContainer" style={{width:"100%",maxWidth:"800px",minWidth:"300px"}}>
                   {
                       userResults.map((user,index) => (
-                          <div className="FollowingUserItem" key={index}>
+                          <Link to={`/profile/${user.username}`} className="FollowingUserItem" key={index}>
                               <div className="SearchUserProfile"> 
                                 <img src={`${address}/public/images/${user.profile}`} alt="" className="imgContainer" width="70px" height="70px" />
                               </div>
                               <div className="FollowingUserDetails">
                                   <div className="FollowingTopLevelDetails">
                                       <div className="FollowingUserName"> @{user.username} </div>
-                                      {
-                                        user.follows.indexOf(userDetails.username) !== -1 ? 
-                                          <div className="FollowingUserBtn"> unfollow </div>
+                                      {/* {
+                                        followingUsers[index] ? 
+                                          <div className="FollowingUserBtn" onClick={(e) => {toggleFollow(e,index)}}> unfollow </div>
                                         :
-                                        <div className="FollowingUserBtn" style={{backgroundColor:"black",color:"white",border:"2px solid rgb(40,40,40)"}}> follow </div>
-                                      }
+                                        <div className="FollowingUserBtn" onClick={(e) => {toggleFollow(e,index)}}
+                                        style={{backgroundColor:"black",color:"white",border:"2px solid rgb(40,40,40)"}}> follow </div>
+                                      } */}
                                   </div>
                                   <div className="FollowingUserBio">{user.bio}</div>
                               </div>
-                          </div>
+                          </Link>
                       ))
                   }
                   

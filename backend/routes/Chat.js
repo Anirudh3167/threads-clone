@@ -21,10 +21,10 @@ const ChatCollection = mongoose.model("Chat", mongoChatSchema);
 const { Server } = require("socket.io");
 const server = http.createServer(app);
 const io = new Server(server,{cors:{
-    origin : "*",
+    origin : process.env.FRONTEND_URL,
     methods : ["GET","POST"],
 }})
-server.listen(3001, () => {console.log("Socket server started");})
+server.listen(process.env.PORT || 3001, () => {console.log("Socket server started");})
 
 io.on("connection",(socket) => {
     socket.on("connect_error", (err) => {
@@ -76,14 +76,6 @@ io.on("connection",(socket) => {
         socket.to(data.room).emit("otherStream",data);
     })
 })
-
-// Mongoose Connection
-mongoose.connect("mongodb+srv://Master:Master@cluster0.9sttlnd.mongodb.net/?retryWrites=true&w=majority",{
-    useNewUrlParser:true,
-    useUnifiedTopology:true,
-});
-
-mongoose.connection.once("open",()=>{console.log("DataBase Connection Open!")});
 
 const mongoSocketChannelsSchema = new mongoose.Schema({
     user1 : String,

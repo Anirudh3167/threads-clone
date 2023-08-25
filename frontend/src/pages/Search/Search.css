@@ -4,7 +4,8 @@
     justify-content: flex-start;
     flex-direction: column;
 
-    width: 74vw;
+    width: 80vw;
+    min-width: 300px;
     height: 100vh;
 
     border-left: 2px solid rgb(60,60,60);

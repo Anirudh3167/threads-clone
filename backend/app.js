@@ -1,3 +1,5 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
@@ -11,9 +13,9 @@ const secretKey = "secretKey";
 const app = express();
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
-app.use(cors({origin:"http://localhost:3000",credentials:true}));
+app.use(cors({origin:process.env.FRONTEND_URL,credentials:true}));
 app.use(cookieParser());
-app.use('/public',express.static('../public'));
+app.use('/public',express.static('./public'));
 
 const userRouter = require("./routes/User");
 const threadsRouter = require("./routes/Threads");
@@ -25,8 +27,11 @@ app.use('/chat',chatSockets);
 app.get("/", async (req,res)=>{
 
         console.log("Fetching all Threads");
-        const thread = await Thread.find({});
-        res.send(thread);
+        const data = {
+            status : true,
+            message : "Successfully seperated"
+        }
+        res.send(data);
 
 })
 
@@ -100,3 +105,14 @@ function verifyToken(req,res,next) {
 app.listen(port,()=>{
     console.log(`Server started at port : ${port}`);
 });
+
+
+// ################################################
+// MONGOOSE CONNECTION
+// ################################################
+mongoose.connect(process.env.MONGODB_CLUSTER_URL,{
+    useNewUrlParser:true,
+    useUnifiedTopology:true,
+});
+
+mongoose.connection.once("open",()=>{console.log("DataBase Connection Open!")});

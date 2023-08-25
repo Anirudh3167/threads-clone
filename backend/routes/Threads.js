@@ -17,13 +17,6 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 
-mongoose.connect("mongodb+srv://Master:Master@cluster0.9sttlnd.mongodb.net/?retryWrites=true&w=majority",{
-    useNewUrlParser:true,
-    useUnifiedTopology:true,
-});
-
-mongoose.connection.once("open",()=>{console.log("DataBase Connection Open!")});
-
 const mongoThreadSchema = new mongoose.Schema({
     id : String,
     username : String,

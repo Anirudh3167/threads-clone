@@ -3,8 +3,8 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 
-import '../pages/profile.css'
-import FeedLeftNavbar from './pageComponents/FeedLeftNavbar';
+import './profile.css'
+import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar';
 import { useNavigate } from 'react-router-dom';
 import { BiCommentDetail, BiRepost, BiShareAlt, BiSolidDislike, BiSolidLike } from 'react-icons/bi'
 

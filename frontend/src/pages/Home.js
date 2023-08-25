@@ -1,6 +1,6 @@
 import React from 'react'
 
-import '../pages/Home.css'
+import './Home.css'
 import HomeNavbar from '../components/HomeNavbar.jsx'
 
 

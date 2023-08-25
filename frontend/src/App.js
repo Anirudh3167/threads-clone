@@ -1,10 +1,8 @@
 import './App.css';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 
-import { address, socketPort } from './security/ipAddress'
-
 import About from './pages/About/About';
-import Profile from './pages/profile';
+import Profile from './pages/profile/profile';
 import Home from './pages/Home';
 import Thread from './pages/thread/Thread';
 import Feed from './pages/feed/Feed';
@@ -17,10 +15,13 @@ import Signup from './pages/SignUp/Signup';
 import Signin from './pages/signin/Signin';
 import Testing from './pages/testing/Testing';
 import Search from './pages/Search/Search';
+import { useEffect } from 'react';
 
 
 function App() {
   // Address initiation
+  const address = process.env.REACT_APP_BACKEND_URL;
+  const socketPort = process.env.PORT || 3001;
   return (
     <div className="App">
       <BrowserRouter>
