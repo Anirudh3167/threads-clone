@@ -7,18 +7,6 @@ import FeedLeftNavbar from '../pageComponents/FeedLeftNavbar'
 import { useNavigate } from 'react-router-dom';
 
 function Chat({address,socketPort}) {
-    // If Sockets are not supported
-    if (!process.env.REACT_APP_SOCKETS) {
-        return (
-            <div className='FeedMainContainer'>
-                <FeedLeftNavbar address={address} />
-    
-                <div className="NoSocketsDisplay">
-                    Sockets are not supported in free hostings
-                </div>
-            </div>
-        )
-      }
   // Dark Mode or Light Mode.
   useEffect(()=>{
     if (localStorage.getItem('displayMode')) {
@@ -106,6 +94,18 @@ function Chat({address,socketPort}) {
   useEffect(() => {
       userLoggedIn();
   },[]);
+  // If Sockets are not supported
+  if (!process.env.REACT_APP_SOCKETS) {
+      return (
+          <div className='FeedMainContainer'>
+              <FeedLeftNavbar address={address} />
+  
+              <div className="NoSocketsDisplay">
+                  Sockets are not supported in free hostings
+              </div>
+          </div>
+      )
+    }
   return (
     <div className='FeedMainContainer'>
         <FeedLeftNavbar address={address} />

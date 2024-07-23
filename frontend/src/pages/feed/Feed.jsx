@@ -48,7 +48,7 @@ function Feed({address}) {
         const res = await axios.post(`${address}/threads`,formData,{"withCredentials":true});
         if (res.data.stats) {
             if (res.data.images.length !== 0) {
-                threadData.message.image(res.data.images);
+                threadData.message.image = res.data.images;
             }
             setFeedThreads(current => [threadData,...current]);
             setPostInput('');
