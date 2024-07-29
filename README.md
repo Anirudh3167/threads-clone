@@ -7,8 +7,8 @@
 
 ## Code working
 ### Frontend
-React along with the tailwind is used.
-React Redux is used for state management.
+React alone is used.
+Socket io for socket communication
 
 ### Backend
 NodeJS with Express is used.
